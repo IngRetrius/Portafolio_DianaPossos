@@ -1,0 +1,95 @@
+/* Contact Section */
+
+.contact {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+}
+
+.contact .section__title {
+    color: white;
+}
+
+.contact .section__title::after {
+    background: white;
+}
+
+.contact__content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact__text {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-2xl);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact__links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.contact__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-base);
+    text-decoration: none;
+}
+
+.contact__link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+    color: white;
+}
+
+.contact__icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.contact__download {
+    margin-top: var(--spacing-2xl);
+}
+
+.contact__download .btn {
+    background-color: white;
+    color: var(--color-primary);
+}
+
+.contact__download .btn:hover {
+    background-color: var(--color-gray-100);
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact__text {
+        font-size: var(--font-size-base);
+    }
+    
+    .contact__links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact__link {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-md) var(--spacing-lg);
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}

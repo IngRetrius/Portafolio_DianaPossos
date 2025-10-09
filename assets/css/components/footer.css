@@ -1,0 +1,48 @@
+/* Footer */
+
+.footer {
+    background-color: var(--color-gray-900);
+    color: white;
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    text-align: center;
+}
+
+.footer__logo-img {
+    height: 100px;
+    width: auto;
+    /* Removido el filter que invertía colores */
+    opacity: 1;
+    background-color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+}
+
+.footer__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer__info p {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer {
+        padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    }
+    
+    .footer__logo-img {
+        height: 80px;
+    }
+}
