@@ -167,7 +167,15 @@ function initModal() {
         avatar: `
             <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Avatar Profesional</h2>
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <img src="assets/images/avatar.jpg" alt="Avatar" style="max-width: 300px; width: 100%; height: auto; border-radius: 50%; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl); display: block;">
+                <video 
+                    controls 
+                    autoplay 
+                    muted 
+                    loop
+                    style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl); display: block;">
+                    <source src="assets/images/avatar.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
                 <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 500px;">
                     Representación visual del perfil profesional de Diana Rocío Possos Beltrán,
                     enfocado en educación inclusiva y recursos digitales aplicados.
