@@ -135,6 +135,123 @@
 .sitemap__list ul a:hover {
     color: var(--color-primary);
 }
+/* Modal de Referencias */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal__content {
+    background-color: white;
+    margin: 3% auto;
+    padding: var(--spacing-2xl);
+    border-radius: var(--border-radius-xl);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    animation: slideDown 0.3s ease;
+}
+
+.modal__content--large {
+    max-width: 900px;
+}
+
+.modal__close {
+    color: var(--color-text-secondary);
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.modal__close:hover,
+.modal__close:focus {
+    color: var(--color-primary);
+}
+
+.modal__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    padding-right: var(--spacing-2xl);
+}
+
+.modal__subtitle {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--color-gray-100);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius-full);
+    margin-bottom: var(--spacing-xl);
+}
+
+.references__list--full {
+    margin-top: var(--spacing-xl);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar personalizado para el modal */
+.modal__content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal__content::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+    border-radius: var(--border-radius-full);
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: var(--border-radius-full);
+}
+
+.modal__content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal__content {
+        width: 95%;
+        margin: 5% auto;
+        padding: var(--spacing-lg);
+        max-height: 90vh;
+    }
+    
+    .modal__title {
+        font-size: var(--font-size-xl);
+    }
+}
 
 /* Responsive */
 @media (max-width: 768px) {
