@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="assets/css/components/header.css">
     <link rel="stylesheet" href="assets/css/components/hero.css">
     <link rel="stylesheet" href="assets/css/components/about.css">
+    <link rel="stylesheet" href="assets/css/components/products.css">
     <link rel="stylesheet" href="assets/css/components/project.css">
     <link rel="stylesheet" href="assets/css/components/methodology.css">
     <link rel="stylesheet" href="assets/css/components/results.css">
+    <link rel="stylesheet" href="assets/css/components/credits.css">
     <link rel="stylesheet" href="assets/css/components/contact.css">
     <link rel="stylesheet" href="assets/css/components/footer.css">
     <link rel="stylesheet" href="assets/css/components/carousel.css">
@@ -40,9 +42,16 @@
                     <ul class="nav__list" id="navList">
                         <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
                         <li class="nav__item"><a href="#sobre-mi" class="nav__link">Sobre mí</a></li>
+                        <li class="nav__item nav__item--dropdown">
+                            <a href="#productos" class="nav__link">Productos <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown__menu">
+                                <li><a href="#identificando" class="dropdown__link">1. Identificando</a></li>
+                                <li><a href="#referenciando" class="dropdown__link">2. Referenciando</a></li>
+                                <li><a href="#disenando" class="dropdown__link">3. Diseñando</a></li>
+                            </ul>
+                        </li>
                         <li class="nav__item"><a href="#proyecto" class="nav__link">Proyecto</a></li>
-                        <li class="nav__item"><a href="#metodologia" class="nav__link">Metodología</a></li>
-                        <li class="nav__item"><a href="#resultados" class="nav__link">Resultados</a></li>
+                        <li class="nav__item"><a href="#creditos" class="nav__link">Créditos</a></li>
                         <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
                     </ul>
                 </nav>
@@ -61,16 +70,19 @@
                     <p class="hero__description">
                         Especialista en educación inclusiva, tecnologías educativas y desarrollo de 
                         recursos digitales aplicados al fortalecimiento de procesos cognitivos en 
-                        estudiantes con necesidades especiales. Con amplia experiencia como instructora 
-                        virtual y líder de proyectos educativos en el SENA.
+                        estudiantes con necesidades especiales.
                     </p>
+                    <div class="hero__metadata">
+                        <p><strong>Docente Tutor:</strong> [Nombre del tutor]</p>
+                        <p><strong>Director de Trabajo:</strong> [Nombre del director]</p>
+                    </div>
                     <div class="hero__buttons">
                         <a href="#proyecto" class="btn btn--primary">Ver Proyecto</a>
                         <a href="documents/tesis-completa.pdf" class="btn btn--secondary" download>Descargar Tesis</a>
                     </div>
                 </div>
                 <div class="hero__image">
-                    <img src="assets/images/avatar.jpg" alt="Diana Rocío Possos Beltrán" class="hero__avatar">
+                    <img src="assets/images/avatar.jpg" alt="Diana Rocío Possos Beltrán" class="hero__avatar" loading="lazy">
                 </div>
             </div>
         </div>
@@ -116,22 +128,6 @@
                             <strong>Instructor Virtual</strong>
                             <span>SENA • 2009 - 2019 (10+ años)</span>
                         </li>
-                        <li class="about__item">
-                            <strong>Líder de Línea de Producción</strong>
-                            <span>SENA • 2014 (Área de Software y contenidos digitales)</span>
-                        </li>
-                        <li class="about__item">
-                            <strong>Asesor Pedagógico</strong>
-                            <span>SENA • 2015</span>
-                        </li>
-                    </ul>
-
-                    <h3 class="about__subtitle" style="margin-top: 2rem;">Certificaciones</h3>
-                    <ul class="about__list">
-                        <li class="about__item">
-                            <strong>ITIL® Foundation Certificate in IT Service Management</strong>
-                            <span>PeopleCert • Nov 2021 • Credential ID: GR671356069DP</span>
-                        </li>
                     </ul>
                 </div>
                 
@@ -143,30 +139,154 @@
                         <span class="tag">Herramientas TIC</span>
                         <span class="tag">Estimulación Cognitiva</span>
                         <span class="tag">Aprendizaje Basado en Juegos</span>
-                        <span class="tag">Investigación Acción Participativa</span>
                         <span class="tag">Wordwall</span>
                         <span class="tag">Formación Virtual</span>
                         <span class="tag">Diseño Instruccional</span>
-                        <span class="tag">Gestión de Servicios TI</span>
-                        <span class="tag">Ambientes Virtuales de Aprendizaje</span>
-                        <span class="tag">Análisis y Desarrollo de Sistemas</span>
-                    </div>
-
-                    <h3 class="about__subtitle" style="margin-top: 2rem;">Competencias Técnicas</h3>
-                    <div class="about__tags">
-                        <span class="tag">Plataformas LMS</span>
-                        <span class="tag">ITIL Service Management</span>
-                        <span class="tag">Soporte Técnico y Funcional</span>
-                        <span class="tag">Diseño de Contenidos Digitales</span>
-                        <span class="tag">Evaluación de Procesos</span>
-                        <span class="tag">Gestión de Proyectos Educativos</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECT SECTION CON CAROUSEL -->
+    <!-- PRODUCTOS SECTION (NUEVA) -->
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section__title">Productos Académicos</h2>
+            <p class="products__intro">
+                Recursos digitales desarrollados como parte del trabajo de grado
+            </p>
+        </div>
+    </section>
+
+    <!-- 1. IDENTIFICANDO -->
+    <section class="identifying" id="identificando">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__number">1.</span> Identificando
+            </h2>
+            <div class="identifying__grid">
+                <div class="product__card">
+                    <div class="product__icon">👤</div>
+                    <h3 class="product__title">Avatar</h3>
+                    <p class="product__description">
+                        Representación visual de mi perfil profesional y académico
+                    </p>
+                    <button class="btn btn--primary" onclick="openModal('avatar')">Ver Avatar</button>
+                </div>
+                
+                <div class="product__card">
+                    <div class="product__icon">📊</div>
+                    <h3 class="product__title">Póster Digital</h3>
+                    <p class="product__description">
+                        Síntesis visual del proyecto de investigación
+                    </p>
+                    <button class="btn btn--primary" onclick="openModal('poster')">Ver Póster</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. REFERENCIANDO -->
+    <section class="referencing" id="referenciando">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__number">2.</span> Referenciando
+            </h2>
+            <div class="referencing__content">
+                <div class="ebook__card">
+                    <div class="ebook__icon">📚</div>
+                    <h3 class="ebook__title">E-book del Proyecto</h3>
+                    <p class="ebook__description">
+                        Documento digital completo del trabajo de investigación sobre el 
+                        fortalecimiento de la memoria a corto plazo mediante Wordwall
+                    </p>
+                    <div class="ebook__features">
+                        <span class="feature">📄 Documento completo</span>
+                        <span class="feature">🔍 Metodología detallada</span>
+                        <span class="feature">📊 Resultados y análisis</span>
+                    </div>
+                    <div class="ebook__actions">
+                        <button class="btn btn--primary" onclick="openModal('ebook')">Leer Online</button>
+                        <a href="documents/ebook.pdf" class="btn btn--secondary" download>
+                            Descargar PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. DISEÑANDO -->
+    <section class="designing" id="disenando">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__number">3.</span> Diseñando
+            </h2>
+            
+            <div class="tabs">
+                <div class="tabs__nav">
+                    <button class="tab__btn active" data-tab="unidad">Unidad Didáctica</button>
+                    <button class="tab__btn" data-tab="infografia">Infografía</button>
+                    <button class="tab__btn" data-tab="propuesta">Propuesta Metodológica</button>
+                    <button class="tab__btn" data-tab="diseno">Diseño Instruccional</button>
+                    <button class="tab__btn" data-tab="producto">Producto Final</button>
+                    <button class="tab__btn" data-tab="video">Video Tutorial</button>
+                </div>
+                
+                <div class="tabs__content">
+                    <div class="tab__panel active" id="unidad">
+                        <div class="panel__content">
+                            <h3>Unidad Didáctica</h3>
+                            <p>Secuencia de actividades diseñadas para fortalecer la memoria a corto plazo</p>
+                            <button class="btn btn--primary" onclick="openModal('unidad')">Ver Unidad</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab__panel" id="infografia">
+                        <div class="panel__content">
+                            <h3>Infografía</h3>
+                            <p>Visualización de los conceptos clave del proyecto</p>
+                            <button class="btn btn--primary" onclick="openModal('infografia')">Ver Infografía</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab__panel" id="propuesta">
+                        <div class="panel__content">
+                            <h3>Propuesta Metodológica</h3>
+                            <p>Marco metodológico del proyecto de investigación</p>
+                            <button class="btn btn--primary" onclick="openModal('propuesta')">Ver Propuesta</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab__panel" id="diseno">
+                        <div class="panel__content">
+                            <h3>Diseño Instruccional</h3>
+                            <p>Planificación pedagógica de las intervenciones</p>
+                            <button class="btn btn--primary" onclick="openModal('diseno')">Ver Diseño</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab__panel" id="producto">
+                        <div class="panel__content">
+                            <h3>Producto Final</h3>
+                            <p>Actividades implementadas en Wordwall</p>
+                            <a href="https://wordwall.net" target="_blank" class="btn btn--primary">Acceder a Wordwall</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tab__panel" id="video">
+                        <div class="panel__content">
+                            <h3>Video Tutorial</h3>
+                            <p>Guía sobre el uso de las actividades digitales</p>
+                            <button class="btn btn--primary" onclick="openModal('video')">Ver Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT SECTION (MANTENER ORIGINAL) -->
     <section class="project" id="proyecto">
         <div class="container">
             <h2 class="section__title">Trabajo de Grado</h2>
@@ -175,320 +295,155 @@
                     <h3 class="project__title">
                         Fortalecimiento de la memoria a corto plazo mediada por la secuencia 
                         didáctica como estrategia pedagógica, a través de la plataforma Wordwall 
-                        en estudiantes de inclusión de grado quinto de la Ciudadela Educativa de 
-                        Pasto, Sede Puerres
+                        en estudiantes de inclusión de grado quinto
                     </h3>
                     <p class="project__date">Agosto 2025</p>
                 </div>
 
-                <!-- CAROUSEL -->
+                <!-- CAROUSEL (MANTENER ORIGINAL) -->
                 <div class="carousel">
                     <div class="carousel__container">
                         <div class="carousel__track" id="carouselTrack">
-                            
-                            <!-- Slide 1: Problema Identificado -->
                             <div class="carousel__slide active">
                                 <div class="carousel__content">
                                     <h4 class="carousel__title">Problema Identificado</h4>
                                     <p class="carousel__text">
                                         En la Ciudadela Educativa de Pasto, sede Puerres, se identificó que 
-                                        estudiantes con discapacidad cognitiva leve o moderada presentan 
-                                        dificultades significativas en la memoria a corto plazo, lo que afecta 
-                                        su rendimiento académico y participación escolar.
-                                    </p>
-                                    <p class="carousel__text">
-                                        Estas dificultades impactan su capacidad para retener información, 
-                                        seguir instrucciones y consolidar aprendizajes significativos, 
-                                        contribuyendo a un riesgo de exclusión dentro del propio espacio educativo.
+                                        estudiantes con discapacidad cognitiva presentan dificultades significativas 
+                                        en la memoria a corto plazo.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Slide 2: Objetivo General -->
                             <div class="carousel__slide">
                                 <div class="carousel__content">
                                     <h4 class="carousel__title">Objetivo General</h4>
                                     <p class="carousel__text">
-                                        Fortalecer la memoria a corto plazo mediada por una secuencia didáctica 
-                                        a través de la plataforma Wordwall, en los estudiantes de inclusión del 
-                                        grado quinto de la Ciudadela Educativa de Pasto, sede Puerres.
+                                        Fortalecer la memoria a corto plazo mediante secuencia didáctica 
+                                        a través de Wordwall en estudiantes de inclusión.
                                     </p>
-                                    <div class="carousel__highlight">
-                                        <p>🎯 Implementación de estrategias digitales interactivas</p>
-                                        <p>📱 Uso de la plataforma Wordwall como herramienta pedagógica</p>
-                                        <p>👥 Enfoque en educación inclusiva y participativa</p>
-                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Slide 3: Objetivos Específicos -->
                             <div class="carousel__slide">
                                 <div class="carousel__content">
-                                    <h4 class="carousel__title">Objetivos Específicos</h4>
-                                    <ul class="carousel__list">
-                                        <li>
-                                            <span class="carousel__number">1</span>
-                                            Identificar las principales dificultades cognitivas relacionadas 
-                                            con la memoria en los estudiantes de inclusión
-                                        </li>
-                                        <li>
-                                            <span class="carousel__number">2</span>
-                                            Diseñar e implementar actividades digitales adaptadas a través 
-                                            de Wordwall que estimulen la memoria y participación activa
-                                        </li>
-                                        <li>
-                                            <span class="carousel__number">3</span>
-                                            Observar y describir los cambios en el desempeño académico y 
-                                            actitud tras la aplicación de las actividades
-                                        </li>
-                                        <li>
-                                            <span class="carousel__number">4</span>
-                                            Promover un ambiente educativo inclusivo que favorezca la 
-                                            motivación, autoestima y equidad en el aprendizaje
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Slide 4: Justificación -->
-                            <div class="carousel__slide">
-                                <div class="carousel__content">
-                                    <h4 class="carousel__title">Justificación</h4>
+                                    <h4 class="carousel__title">Metodología</h4>
                                     <p class="carousel__text">
-                                        La plataforma Wordwall permite crear actividades digitales interactivas 
-                                        y lúdicas que se adaptan a los ritmos de aprendizaje de estudiantes con 
-                                        necesidades educativas especiales, ofreciendo experiencias accesibles y 
-                                        motivadoras que fortalecen capacidades cognitivas fundamentales.
+                                        Investigación Acción Participativa con enfoque mixto y 
+                                        aprendizaje basado en juegos.
                                     </p>
-                                    <div class="carousel__boxes">
-                                        <div class="carousel__box">
-                                            <h5>💡 Pedagógico</h5>
-                                            <p>Innovación en estrategias de enseñanza</p>
-                                        </div>
-                                        <div class="carousel__box">
-                                            <h5>🤝 Social</h5>
-                                            <p>Reducción de brecha digital en zonas rurales</p>
-                                        </div>
-                                        <div class="carousel__box">
-                                            <h5>⚖️ Ético</h5>
-                                            <p>Garantía del derecho a la educación inclusiva</p>
-                                        </div>
-                                        <div class="carousel__box">
-                                            <h5>💻 Tecnológico</h5>
-                                            <p>Acceso a herramientas digitales motivadoras</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
+                            <div class="carousel__slide">
+                                <div class="carousel__content">
+                                    <h4 class="carousel__title">Resultados Esperados</h4>
+                                    <p class="carousel__text">
+                                        Mejora en retención de información y mayor participación 
+                                        en actividades escolares.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Controles del Carousel -->
-                    <button class="carousel__button carousel__button--prev" id="prevBtn" aria-label="Anterior">
-                        ‹
-                    </button>
-                    <button class="carousel__button carousel__button--next" id="nextBtn" aria-label="Siguiente">
-                        ›
-                    </button>
+                    <button class="carousel__button carousel__button--prev" id="prevBtn">‹</button>
+                    <button class="carousel__button carousel__button--next" id="nextBtn">›</button>
 
-                    <!-- Indicadores -->
-                    <div class="carousel__indicators" id="carouselIndicators">
-                        <button class="carousel__indicator active" data-slide="0" aria-label="Slide 1"></button>
-                        <button class="carousel__indicator" data-slide="1" aria-label="Slide 2"></button>
-                        <button class="carousel__indicator" data-slide="2" aria-label="Slide 3"></button>
-                        <button class="carousel__indicator" data-slide="3" aria-label="Slide 4"></button>
+                    <div class="carousel__indicators">
+                        <button class="carousel__indicator active"></button>
+                        <button class="carousel__indicator"></button>
+                        <button class="carousel__indicator"></button>
+                        <button class="carousel__indicator"></button>
                     </div>
-                </div>
-
-                <!-- Imagen del proyecto -->
-                <div class="project__image" style="margin-top: 3rem;">
-                    <img src="assets/images/proyecto-wordwall.jpg" alt="Proyecto Wordwall - Educación Inclusiva" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-xl);">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- METHODOLOGY SECTION -->
-    <section class="methodology" id="metodologia">
+    <!-- CRÉDITOS SECTION (NUEVA) -->
+    <section class="credits" id="creditos">
         <div class="container">
-            <h2 class="section__title">Marco Metodológico</h2>
+            <h2 class="section__title">
+                <span class="section__number">4.</span> Créditos
+            </h2>
             
-            <div class="methodology__grid">
-                <div class="methodology__card">
-                    <div class="methodology__card-icon">🔍</div>
-                    <h3 class="methodology__card-title">Enfoque</h3>
-                    <p class="methodology__card-text">
-                        Investigación Mixta que combina datos cuantitativos y cualitativos
-                    </p>
-                </div>
-
-                <div class="methodology__card">
-                    <div class="methodology__card-icon">📊</div>
-                    <h3 class="methodology__card-title">Tipo</h3>
-                    <p class="methodology__card-text">
-                        Investigación Descriptiva sobre características de estudiantes de inclusión
-                    </p>
-                </div>
-
-                <div class="methodology__card">
-                    <div class="methodology__card-icon">🤝</div>
-                    <h3 class="methodology__card-title">Modelo</h3>
-                    <p class="methodology__card-text">
-                        Investigación Acción Participativa (IAP) con transformación social
-                    </p>
-                </div>
-
-                <div class="methodology__card">
-                    <div class="methodology__card-icon">🎮</div>
-                    <h3 class="methodology__card-title">Estrategia</h3>
-                    <p class="methodology__card-text">
-                        Aprendizaje Basado en Juegos mediante plataforma Wordwall
-                    </p>
-                </div>
-            </div>
-
-            <div class="methodology__phases">
-                <h3 class="methodology__subtitle">Fases de Investigación</h3>
-                <div class="methodology__timeline">
-                    <div class="timeline__item">
-                        <div class="timeline__marker">1</div>
-                        <div class="timeline__content">
-                            <h4>Diagnóstico Inicial</h4>
-                            <p>Identificación de dificultades de memoria en estudiantes</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__marker">2</div>
-                        <div class="timeline__content">
-                            <h4>Planificación Participativa</h4>
-                            <p>Diseño conjunto de estrategia con docentes</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__marker">3</div>
-                        <div class="timeline__content">
-                            <h4>Intervención Pedagógica</h4>
-                            <p>Implementación de secuencia didáctica con Wordwall</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__marker">4</div>
-                        <div class="timeline__content">
-                            <h4>Evaluación Comparativa</h4>
-                            <p>Aplicación de pruebas pre y post intervención</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__marker">5</div>
-                        <div class="timeline__content">
-                            <h4>Sistematización</h4>
-                            <p>Análisis e interpretación de resultados</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__marker">6</div>
-                        <div class="timeline__content">
-                            <h4>Socialización</h4>
-                            <p>Presentación de hallazgos a comunidad educativa</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="methodology__population">
-                <h3 class="methodology__subtitle">Población y Muestra</h3>
-                <div class="methodology__stats">
-                    <div class="stat__item">
-                        <span class="stat__number">23</span>
-                        <span class="stat__label">Estudiantes Grado 5°</span>
-                    </div>
-                    <div class="stat__item">
-                        <span class="stat__number">4</span>
-                        <span class="stat__label">Estudiantes de Inclusión</span>
-                    </div>
-                    <div class="stat__item">
-                        <span class="stat__number">100%</span>
-                        <span class="stat__label">Zona Rural</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESULTS SECTION -->
-    <section class="results" id="resultados">
-        <div class="container">
-            <h2 class="section__title">Resultados y Contribuciones</h2>
-            
-            <div class="results__content">
-                <div class="results__card">
-                    <h3 class="results__card-title">Categorías de Estudio</h3>
-                    <ul class="results__list">
-                        <li><strong>Herramientas Digitales:</strong> Wordwall como recurso interactivo</li>
-                        <li><strong>Educación Inclusiva:</strong> Garantía del derecho a la educación</li>
-                        <li><strong>Estimulación Cognitiva:</strong> Fortalecimiento de capacidades mentales</li>
-                        <li><strong>Motivación:</strong> Factor clave en el aprendizaje</li>
+            <div class="credits__grid">
+                <div class="credits__card">
+                    <h3 class="credits__card-title">📖 Referencias Bibliográficas</h3>
+                    <p class="credits__format">Normas APA v7</p>
+                    <ul class="references__list">
+                        <li>Autor, A. (2024). <em>Título del libro</em>. Editorial.</li>
+                        <li>Autor, B. (2023). Título del artículo. <em>Revista Académica</em>, 15(2), 100-120.</li>
+                        <li>Organización. (2022). <em>Documento técnico</em>. https://example.com</li>
                     </ul>
+                    <button class="btn btn--secondary" onclick="openModal('referencias')">Ver Referencias Completas</button>
                 </div>
-
-                <div class="results__card">
-                    <h3 class="results__card-title">Técnicas de Recolección</h3>
-                    <ul class="results__list">
-                        <li>Observación participante</li>
-                        <li>Fichas de observación</li>
-                        <li>Diario de campo</li>
-                        <li>Entrevistas estructuradas</li>
-                        <li>Test diagnósticos (pre y post)</li>
-                        <li>Pruebas objetivas</li>
-                    </ul>
-                </div>
-
-                <div class="results__card">
-                    <h3 class="results__card-title">Validación del RED</h3>
-                    <p class="results__text">
-                        El Recurso Educativo Digital fue validado por expertos en investigación 
-                        educativa, obteniendo calificaciones excelentes en pertinencia pedagógica, 
-                        claridad, coherencia, calidad técnica, funcionalidad y motivación.
+                
+                <div class="credits__card">
+                    <h3 class="credits__card-title">🙏 Agradecimientos</h3>
+                    <p>
+                        A la Universidad de Cartagena, especialmente a la Maestría en Recursos 
+                        Digitales Aplicados a la Educación, por su apoyo constante.
+                    </p>
+                    <p>
+                        A la Ciudadela Educativa de Pasto, sede Puerres, por abrir sus puertas 
+                        y permitir la realización de esta investigación.
                     </p>
                 </div>
-
-                <div class="results__card">
-                    <h3 class="results__card-title">Impacto Esperado</h3>
-                    <ul class="results__list">
-                        <li>Mejora en retención de información</li>
-                        <li>Mayor participación en actividades escolares</li>
-                        <li>Aumento de autoestima y motivación</li>
-                        <li>Fortalecimiento de inclusión educativa</li>
-                        <li>Replicabilidad en otros contextos rurales</li>
+                
+                <div class="credits__card">
+                    <h3 class="credits__card-title">⚖️ Licenciamiento</h3>
+                    <div class="license__badge">
+                        <img src="assets/images/cc-license.svg" alt="Creative Commons" loading="lazy">
+                    </div>
+                    <p>
+                        Este trabajo está bajo licencia 
+                        <strong>Creative Commons Atribución-NoComercial-CompartirIgual 4.0</strong>
+                    </p>
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="btn btn--secondary">
+                        Ver Licencia
+                    </a>
+                </div>
+                
+                <div class="credits__card">
+                    <h3 class="credits__card-title">🗺️ Mapa de Navegación</h3>
+                    <ul class="sitemap__list">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li>
+                            Productos
+                            <ul>
+                                <li><a href="#identificando">1. Identificando</a></li>
+                                <li><a href="#referenciando">2. Referenciando</a></li>
+                                <li><a href="#disenando">3. Diseñando</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#proyecto">Proyecto</a></li>
+                        <li><a href="#creditos">Créditos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT SECTION (MANTENER) -->
     <section class="contact" id="contacto">
         <div class="container">
             <h2 class="section__title">Contacto</h2>
             <div class="contact__content">
                 <p class="contact__text">
-                    Si deseas conocer más sobre este proyecto de investigación o colaborar 
-                    en iniciativas de educación inclusiva, no dudes en contactarme.
+                    Si deseas conocer más sobre este proyecto o colaborar en iniciativas de educación inclusiva
                 </p>
                 <div class="contact__links">
                     <a href="mailto:Dianiya2007@gmail.com" class="contact__link">
                         <img src="assets/images/icons/email.svg" alt="Email" class="contact__icon">
                         Dianiya2007@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/diana-rocio-possos-beltran-0b472b1b1/" target="_blank" rel="noopener noreferrer" class="contact__link">
+                    <a href="https://www.linkedin.com/in/diana-rocio-possos-beltran-0b472b1b1/" target="_blank" class="contact__link">
                         <img src="assets/images/icons/linkedin.svg" alt="LinkedIn" class="contact__icon">
                         LinkedIn
-                    </a>
-                </div>
-                <div class="contact__download">
-                    <a href="documents/tesis-completa.pdf" class="btn btn--primary" download>
-                        Descargar Trabajo Completo (PDF)
                     </a>
                 </div>
             </div>
@@ -511,11 +466,11 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS - Cargar en orden correcto sin módulos -->
-    <script src="assets/js/data/projectData.js"></script>
+    <!-- SCRIPTS -->
     <script src="assets/js/modules/navigation.js"></script>
     <script src="assets/js/modules/scroll.js"></script>
     <script src="assets/js/modules/modal.js"></script>
+    <script src="assets/js/modules/tabs.js"></script>
     <script src="assets/js/modules/animations.js"></script>
     <script src="assets/js/modules/carousel.js"></script>
     <script src="assets/js/main.js"></script>

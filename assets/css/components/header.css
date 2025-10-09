@@ -41,6 +41,10 @@
     align-items: center;
 }
 
+.nav__item {
+    position: relative;
+}
+
 .nav__link {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
@@ -48,6 +52,9 @@
     padding: var(--spacing-sm) 0;
     position: relative;
     transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
 }
 
 .nav__link::after {
@@ -75,6 +82,62 @@
 
 .nav__link.active::after {
     width: 100%;
+}
+
+/* Dropdown Menu */
+.nav__item--dropdown {
+    position: relative;
+}
+
+.dropdown-arrow {
+    font-size: var(--font-size-xs);
+    transition: transform var(--transition-fast);
+}
+
+.nav__item--dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background-color: white;
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-sm) 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-base);
+    z-index: 1001;
+}
+
+.nav__item--dropdown:hover .dropdown__menu,
+.nav__item--dropdown:focus-within .dropdown__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown__menu li {
+    list-style: none;
+}
+
+.dropdown__link {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.dropdown__link:hover {
+    background-color: var(--color-gray-100);
+    color: var(--color-primary);
+    padding-left: calc(var(--spacing-lg) + var(--spacing-xs));
 }
 
 /* Botón hamburguesa (móvil) */
@@ -130,10 +193,44 @@
         gap: var(--spacing-lg);
         transition: right var(--transition-base);
         z-index: 999;
+        overflow-y: auto;
     }
     
     .nav__list.active {
         right: 0;
+    }
+    
+    .nav__item {
+        width: 100%;
+    }
+    
+    .nav__link {
+        width: 100%;
+        padding: var(--spacing-md) 0;
+    }
+    
+    /* Dropdown en móvil */
+    .dropdown__menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        box-shadow: none;
+        background-color: var(--color-gray-100);
+        border-radius: var(--border-radius-md);
+        margin-top: var(--spacing-sm);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-base);
+    }
+    
+    .nav__item--dropdown.active .dropdown__menu {
+        max-height: 300px;
+    }
+    
+    .dropdown__link {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
     }
     
     .header__logo-img {
