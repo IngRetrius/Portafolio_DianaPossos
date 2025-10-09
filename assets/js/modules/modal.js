@@ -165,10 +165,10 @@ function initModal() {
     // Contenidos predefinidos para los modales
     const modalContents = {
         avatar: `
-            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Avatar Profesional</h2>
-            <div style="text-align: center;">
-                <img src="assets/images/avatar.jpg" alt="Avatar" style="max-width: 300px; border-radius: 50%; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl);">
-                <p style="color: var(--color-text-secondary); line-height: 1.8;">
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Avatar Profesional</h2>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <img src="assets/images/avatar.jpg" alt="Avatar" style="max-width: 300px; width: 100%; height: auto; border-radius: 50%; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl); display: block;">
+                <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 500px;">
                     Representación visual del perfil profesional de Diana Rocío Possos Beltrán,
                     enfocado en educación inclusiva y recursos digitales aplicados.
                 </p>
@@ -176,10 +176,10 @@ function initModal() {
         `,
         
         poster: `
-            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Póster Digital del Proyecto</h2>
-            <div style="text-align: center;">
-                <img src="assets/images/proyecto-wordwall.jpg" alt="Póster" style="max-width: 100%; border-radius: 12px; box-shadow: var(--shadow-xl); margin-bottom: 1.5rem;">
-                <p style="color: var(--color-text-secondary); line-height: 1.8;">
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Póster Digital del Proyecto</h2>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <img src="assets/images/proyecto-wordwall.jpg" alt="Póster" style="max-width: 100%; max-height: 70vh; width: auto; height: auto; border-radius: 12px; box-shadow: var(--shadow-xl); margin-bottom: 1.5rem; object-fit: contain;">
+                <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 600px;">
                     Síntesis visual del proyecto de investigación sobre fortalecimiento de memoria
                     a corto plazo mediante Wordwall en estudiantes de inclusión.
                 </p>
