@@ -39,16 +39,30 @@
     border-width: 0;
 }
 
-/* Focus visible mejorado (WCAG 2.1) */
+/* Focus visible mejorado (WCAG 2.1 AA - Success Criterion 2.4.7) */
 .focus-visible:focus,
 button:focus-visible,
-a:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 0 0 4px rgba(46, 91, 255, 0.2);
+    transition: outline-color var(--transition-micro), box-shadow var(--transition-micro);
+}
+
+/* Focus para inputs con borde interno */
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: var(--border-radius-sm);
+    outline: 2px solid var(--color-primary);
+    outline-offset: 0;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(46, 91, 255, 0.15);
+}
+
+/* Remover outline por defecto cuando no es keyboard focus */
+*:focus:not(:focus-visible) {
+    outline: none;
 }
 
 /* Skip to main content */
@@ -230,11 +244,26 @@ select:focus-visible {
    5. TIPOGRAFÍA
    ============================================ */
 
-/* Mejora de legibilidad */
+/* Mejora de legibilidad (WCAG recomienda 1.5 mínimo, 1.8 óptimo) */
 .u-readable {
     max-width: 65ch;
     line-height: 1.8;
 }
+
+/* Line heights optimizados */
+.u-leading-tight { line-height: 1.25; }
+.u-leading-normal { line-height: 1.5; }
+.u-leading-relaxed { line-height: 1.7; }
+.u-leading-loose { line-height: 1.8; } /* Óptimo para contenido académico */
+
+/* Font sizes semánticos */
+.u-text-xs { font-size: var(--font-size-xs); }
+.u-text-sm { font-size: var(--font-size-sm); }
+.u-text-base { font-size: var(--font-size-base); }
+.u-text-lg { font-size: var(--font-size-lg); }
+.u-text-xl { font-size: var(--font-size-xl); }
+.u-text-2xl { font-size: var(--font-size-2xl); }
+.u-text-3xl { font-size: var(--font-size-3xl); }
 
 /* Truncate text */
 .u-truncate {

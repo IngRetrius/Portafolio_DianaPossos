@@ -51,7 +51,7 @@
     color: var(--color-text-primary);
     padding: var(--spacing-sm) 0;
     position: relative;
-    transition: color var(--transition-fast);
+    transition: color var(--transition-micro);
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
@@ -91,7 +91,7 @@
 
 .dropdown-arrow {
     font-size: var(--font-size-xs);
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-micro);
 }
 
 .nav__item--dropdown:hover .dropdown-arrow {
@@ -131,7 +131,7 @@
     font-size: var(--font-size-base);
     color: var(--color-text-primary);
     text-decoration: none;
-    transition: all var(--transition-fast);
+    transition: all var(--transition-micro);
 }
 
 .dropdown__link:hover {

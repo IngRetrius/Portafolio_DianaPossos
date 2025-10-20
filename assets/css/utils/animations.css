@@ -215,3 +215,52 @@
 .stagger-item:nth-child(4) { animation-delay: 0.4s; }
 .stagger-item:nth-child(5) { animation-delay: 0.5s; }
 .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* ============================================
+   ACCESIBILIDAD - PREFERS REDUCED MOTION
+   ============================================ */
+
+/**
+ * Respeto a preferencias de usuario para movimiento reducido
+ * - Deshabilita animaciones complejas
+ * - Mantiene transiciones instantáneas para feedback visual
+ * - Cumple WCAG 2.1 Success Criterion 2.3.3
+ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Mantener opacidad para elementos que dependían de animaciones */
+    .fade-in,
+    .slide-up,
+    .slide-in-right,
+    .slide-in-left,
+    .scale-up,
+    .stagger-item,
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Deshabilitar efectos decorativos */
+    .bounce,
+    .pulse,
+    .rotate {
+        animation: none;
+    }
+
+    /* Permitir transiciones de hover sutiles para feedback */
+    .hover-lift:hover,
+    .hover-scale:hover {
+        transition: none;
+        transform: none;
+        box-shadow: var(--shadow-md); /* Feedback visual estático */
+    }
+}

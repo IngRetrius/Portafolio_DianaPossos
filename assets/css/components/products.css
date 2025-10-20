@@ -204,7 +204,7 @@
     border: none;
     border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all var(--transition-micro);
     white-space: nowrap;
     position: relative;
 }
