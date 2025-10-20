@@ -1,13 +1,33 @@
 // ==========================================
-// MÓDULO DE ANIMACIONES
+// MÓDULO DE ANIMACIONES - MEJORADO CON ACCESIBILIDAD
 // ==========================================
 
+/**
+ * Sistema de animaciones que respeta preferencias del usuario
+ * - Detecta prefers-reduced-motion
+ * - Usa GPU acceleration
+ * - Throttling en scroll events
+ * - Animaciones sutiles y profesionales
+ */
+
+// Detector de preferencias de movimiento
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function initAnimations() {
-    console.log('Iniciando animaciones...');
-    typeWriter();
-    initParallax();
+    console.log('🎨 Iniciando sistema de animaciones...');
+    console.log(`⚡ Reduced motion: ${prefersReducedMotion ? 'ACTIVADO' : 'Desactivado'}`);
+
+    // Inicializar animaciones respetando preferencias
+    if (!prefersReducedMotion) {
+        typeWriter();
+        initParallax();
+    } else {
+        // Alternativa accesible: fade in simple
+        simpleHeroFadeIn();
+    }
+
     animateTags();
-    console.log('✅ Animaciones inicializadas');
+    console.log('✅ Animaciones inicializadas correctamente');
 }
 
 function typeWriter() {
@@ -36,18 +56,50 @@ function typeWriter() {
     setTimeout(type, 500);
 }
 
+// Alternativa accesible al typewriter
+function simpleHeroFadeIn() {
+    const heroTitle = document.querySelector('.hero__title');
+    if (!heroTitle) return;
+
+    heroTitle.style.opacity = '0';
+    heroTitle.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+        heroTitle.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        heroTitle.style.opacity = '1';
+        heroTitle.style.transform = 'translateY(0)';
+    }, 100);
+}
+
+// Parallax optimizado con throttling
 function initParallax() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    let lastScrollY = 0;
+
+    // Throttled scroll handler
+    function updateParallax() {
         const scrolled = window.pageYOffset;
-        const parallaxSpeed = 0.5;
-        
+        const parallaxSpeed = 0.3; // Reducido para efecto más sutil
+
         if (scrolled < window.innerHeight) {
-            hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+            // Usar transform para GPU acceleration
+            hero.style.transform = `translate3d(0, ${scrolled * parallaxSpeed}px, 0)`;
         }
-    });
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        lastScrollY = window.pageYOffset;
+
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true }); // Passive para mejor performance
 }
 
 function animateTags() {

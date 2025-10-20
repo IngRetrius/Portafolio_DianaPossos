@@ -77,10 +77,27 @@
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     
-    /* Transiciones */
+    /* Transiciones Jerárquicas */
+    /* Micro: Respuestas inmediatas (hover, focus) */
+    --transition-micro: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Base: Transiciones estándar (la mayoría de interacciones) */
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Macro: Transiciones complejas (modales, menús) */
+    --transition-macro: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Suave: Para animaciones de entrada/salida */
+    --transition-smooth: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Legacy support (deprecado, usar jerárquicas) */
     --transition-fast: 150ms ease-in-out;
-    --transition-base: 250ms ease-in-out;
     --transition-slow: 350ms ease-in-out;
+
+    /* Easings específicos */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     
     /* Z-index */
     --z-index-dropdown: 1000;

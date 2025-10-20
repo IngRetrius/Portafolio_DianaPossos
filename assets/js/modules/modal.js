@@ -133,15 +133,34 @@ function initModal() {
                 font-style: italic;
                 color: var(--color-text-primary);
             }
-            
+
+            /* Estilos para botones de galería */
+            #prevImage:hover, #nextImage:hover {
+                background-color: var(--color-primary-dark);
+                transform: scale(1.05);
+            }
+
+            #prevImage:active, #nextImage:active {
+                transform: scale(0.95);
+            }
+
             @media (max-width: 768px) {
                 .modal__content {
                     max-width: 95%;
                     padding: var(--spacing-lg);
                 }
-                
+
                 .references-modal-list li {
                     font-size: 0.9rem;
+                }
+
+                #prevImage, #nextImage {
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                }
+
+                #galleryContainer {
+                    padding: 0 0.5rem;
                 }
             }
         `;
@@ -195,18 +214,22 @@ function initModal() {
         `,
         
         ebook: `
-            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">📚 E-book del Proyecto</h2>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 12px; color: white; margin-bottom: 1.5rem;">
-                <h3 style="margin-bottom: 1rem;">Fortalecimiento de la memoria a corto plazo</h3>
-                <p>Documento completo del trabajo de investigación</p>
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">📚 E-book del Proyecto</h2>
+            <div style="margin-bottom: 1.5rem;">
+                <iframe
+                    src="documents/Referenciando - Ebook.pdf"
+                    style="width: 100%; height: 70vh; border: none; border-radius: 12px; box-shadow: var(--shadow-xl);"
+                    title="E-book del Proyecto de Investigación">
+                </iframe>
             </div>
-            <div style="padding: 1rem; background: var(--color-gray-100); border-radius: 8px;">
-                <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
-                    El e-book contiene la investigación completa sobre el uso de Wordwall como
+            <div style="text-align: center; padding: 1rem; background: var(--color-gray-100); border-radius: 8px;">
+                <p style="color: var(--color-text-secondary); margin-bottom: 1rem; line-height: 1.6;">
+                    <strong>Fortalecimiento de la memoria a corto plazo</strong><br>
+                    Documento completo del trabajo de investigación sobre el uso de Wordwall como
                     herramienta pedagógica para fortalecer procesos cognitivos.
                 </p>
-                <a href="documents/ebook.pdf" class="btn btn--primary" download style="display: inline-block;">
-                    Descargar E-book (PDF)
+                <a href="documents/Referenciando - Ebook.pdf" class="btn btn--primary" download style="display: inline-block;">
+                    📥 Descargar E-book (PDF)
                 </a>
             </div>
         `,
@@ -290,22 +313,169 @@ function initModal() {
                     <li>Uribe, R., Utrilla. S., & Santamaría, A. (2017). Aprendizaje basado en juegos: una alternativa viable para la enseñanza significativa de la sustentabilidad. <em>Revista electrónica sobre educación media y superior (CEMYS)</em>.</li>
                 </ul>
             </div>
-        `
+        `,
+
+        potcast: `
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">🎙️ Podcast del Proyecto</h2>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <video
+                    controls
+                    style="max-width: 800px; width: 100%; height: auto; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl); display: block;">
+                    <source src="assets/images/Potcast.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+                <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 600px;">
+                    Presentación podcast de investigación sobre el fortalecimiento de la memoria
+                    a corto plazo mediante la plataforma Wordwall.
+                </p>
+            </div>
+        `,
+
+        'video-metodologia': `
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Marco de referencia</h2>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <video
+                    controls
+                    style="max-width: 800px; width: 100%; height: auto; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: var(--shadow-xl); display: block;">
+                    <source src="assets/images/Video.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+                <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 600px;">
+                    Video explicativo sobre el marco de referencia del proyecto, 
+                    que presenta los aspectos teóricos, conceptuales y contextuales que sustentan la investigación.
+                </p>
+            </div>
+        `,
+
+        galeria: 'GALLERY_PLACEHOLDER'
+    };
+
+    // Función auxiliar para generar galería de imágenes
+    function generateGalleryContent() {
+        // Detectar imágenes disponibles en la carpeta galería
+        const maxImages = 5; // Límite de imágenes a buscar
+        const availableImages = [];
+
+        // Intentar detectar imágenes de forma síncrona
+        // Nota: En producción, verificar manualmente qué imágenes existen
+        for (let i = 1; i <= maxImages; i++) {
+            availableImages.push({
+                src: `assets/images/galeria/${i}.png`,
+                alt: `Resultado ${i}`
+            });
+        }
+
+        if (availableImages.length === 0) {
+            return `
+                <h2 style="color: var(--color-primary); text-align: center; margin-bottom: 1.5rem;">Galería de fotos</h2>
+                <div style="text-align: center; padding: 3rem; background: var(--color-gray-100); border-radius: 12px;">
+                    <p style="color: var(--color-text-secondary); font-size: 1.2rem;">
+                        📁 No hay imágenes disponibles en la galería
+                    </p>
+                    <p style="color: var(--color-text-secondary); margin-top: 1rem; font-size: 0.9rem;">
+                        Agregue imágenes numeradas (1.jpg, 2.jpg, etc.) en la carpeta assets/images/galeria/
+                    </p>
+                </div>
+            `;
+        }
+
+        return `
+            <h2 style="color: var(--color-primary); text-align: center; margin-bottom: 1.5rem;">Galería de Fotos</h2>
+            <div id="galleryContainer" style="position: relative; max-width: 900px; margin: 0 auto;">
+                <div id="galleryImage" style="text-align: center; position: relative;">
+                    <img id="currentImage" src="${availableImages[0].src}" alt="${availableImages[0].alt}"
+                        style="max-width: 100%; max-height: 60vh; width: auto; height: auto; border-radius: 12px; box-shadow: var(--shadow-xl); object-fit: contain;"
+                        onerror="this.parentElement.innerHTML='<div style=\\'padding: 3rem; background: var(--color-gray-100); border-radius: 12px; text-align: center;\\'><p style=\\'color: var(--color-text-secondary);\\'>No hay imágenes disponibles en la galería</p><p style=\\'color: var(--color-text-secondary); margin-top: 1rem; font-size: 0.9rem;\\'>Agregue imágenes numeradas (1.jpg, 2.jpg, etc.) en assets/images/galeria/</p></div>'">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; gap: 1rem;">
+                    <button id="prevImage" onclick="galleryNavigate(-1)"
+                        style="padding: 0.75rem 1.5rem; background-color: var(--color-primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">
+                        ← Anterior
+                    </button>
+
+                    <div id="galleryCounter" style="color: var(--color-text-secondary); font-weight: 600; font-size: 1rem;">
+                        <span id="currentImageNumber">1</span> / <span id="totalImages">${availableImages.length}</span>
+                    </div>
+
+                    <button id="nextImage" onclick="galleryNavigate(1)"
+                        style="padding: 0.75rem 1.5rem; background-color: var(--color-primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;">
+                        Siguiente →
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 1rem;">
+                    <p id="imageDescription" style="color: var(--color-text-secondary); line-height: 1.8;">
+                        Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+
+    // Variables globales para la galería
+    let currentGalleryIndex = 0;
+    const galleryImages = [];
+
+    // Inicializar imágenes de la galería
+    for (let i = 1; i <= 5; i++) {
+        galleryImages.push({
+            src: `assets/images/galeria/${i}.png`,
+            alt: `Resultado ${i}`,
+            description: ` Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.`
+        });
+    }
+
+    // Función de navegación de galería (expuesta globalmente)
+    window.galleryNavigate = function(direction) {
+        currentGalleryIndex += direction;
+
+        if (currentGalleryIndex < 0) {
+            currentGalleryIndex = galleryImages.length - 1;
+        } else if (currentGalleryIndex >= galleryImages.length) {
+            currentGalleryIndex = 0;
+        }
+
+        const imgElement = document.getElementById('currentImage');
+        const counterElement = document.getElementById('currentImageNumber');
+        const descElement = document.getElementById('imageDescription');
+
+        if (imgElement) {
+            imgElement.src = galleryImages[currentGalleryIndex].src;
+            imgElement.alt = galleryImages[currentGalleryIndex].alt;
+        }
+
+        if (counterElement) {
+            counterElement.textContent = currentGalleryIndex + 1;
+        }
+
+        if (descElement) {
+            descElement.textContent = galleryImages[currentGalleryIndex].description;
+        }
     };
 
     function openModal(contentId) {
         if (!modal) createModal();
 
         const modalBody = modal.querySelector('.modal__body');
-        const content = modalContents[contentId] || `
-            <h2 style="color: var(--color-primary);">Contenido no disponible</h2>
-            <p style="color: var(--color-text-secondary);">Este contenido estará disponible próximamente.</p>
-        `;
-        
+
+        let content;
+
+        // Manejar galería de forma especial
+        if (contentId === 'galeria') {
+            currentGalleryIndex = 0; // Reset al abrir
+            content = generateGalleryContent();
+        } else {
+            content = modalContents[contentId] || `
+                <h2 style="color: var(--color-primary);">Contenido no disponible</h2>
+                <p style="color: var(--color-text-secondary);">Este contenido estará disponible próximamente.</p>
+            `;
+        }
+
         modalBody.innerHTML = content;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         console.log(`Modal abierto: ${contentId}`);
     }
 

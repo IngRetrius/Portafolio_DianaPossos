@@ -1,6 +1,19 @@
-/* Animaciones y transiciones */
+/**
+ * SISTEMA DE ANIMACIONES
+ * Portafolio Académico - Optimizado para Accesibilidad
+ *
+ * Principios:
+ * - Animaciones sutiles y profesionales
+ * - Respeto a prefers-reduced-motion
+ * - GPU acceleration donde sea apropiado
+ * - Duraciones coherentes con el sistema de tokens
+ */
 
-/* Fade In */
+/* ============================================
+   ANIMACIONES BÁSICAS
+   ============================================ */
+
+/* Fade In - Aparición suave */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -11,7 +24,7 @@
 }
 
 .fade-in {
-    animation: fadeIn var(--transition-slow) ease-in;
+    animation: fadeIn var(--transition-smooth) var(--ease-out-quart);
 }
 
 /* Slide Up */

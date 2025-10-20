@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/utils/variables.css">
     <link rel="stylesheet" href="assets/css/utils/reset.css">
     <link rel="stylesheet" href="assets/css/utils/animations.css">
+    <link rel="stylesheet" href="assets/css/utils/utilities.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components/header.css">
     <link rel="stylesheet" href="assets/css/components/hero.css">
@@ -197,17 +198,18 @@
                     <div class="ebook__icon">📚</div>
                     <h3 class="ebook__title">E-book del Proyecto</h3>
                     <p class="ebook__description">
-                        Documento digital completo del trabajo de investigación sobre el 
-                        fortalecimiento de la memoria a corto plazo mediante Wordwall
+                        Documento digital interactivo que presenta el marco de referencia del proyecto 
+                        “Fortalecimiento de la memoria a corto plazo mediante Wordwall”. Integra los marcos teórico, conceptual, legal y contextual, 
+                        junto con recursos multimedia que facilitan la comprensión del enfoque inclusivo, la metodología y los fundamentos pedagógicos de la investigación.
                     </p>
                     <div class="ebook__features">
-                        <span class="feature"> Documento completo</span>
-                        <span class="feature"> Metodología detallada</span>
-                        <span class="feature"> Resultados y análisis</span>
+                        <button class="btn btn--ebook" onclick="openModal('potcast')">🎙️ Ver Podcast</button>
+                        <button class="btn btn--ebook" onclick="openModal('video-metodologia')">🎥 Ver Video</button>
+                        <button class="btn btn--ebook" onclick="openModal('galeria')">📸 Ver Galería</button>
                     </div>
                     <div class="ebook__actions">
                         <button class="btn btn--primary" onclick="openModal('ebook')">Leer Online</button>
-                        <a href="documents/ebook.pdf" class="btn btn--secondary" download>
+                        <a href="documents/Referenciando%20-%20Ebook.pdf" class="btn btn--secondary" download="Referenciando-Ebook.pdf">
                             Descargar PDF
                         </a>
                     </div>

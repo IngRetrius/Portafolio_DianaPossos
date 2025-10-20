@@ -1,0 +1,353 @@
+/**
+ * UTILIDADES CSS - Sistema de Clases Reutilizables
+ * Portafolio Académico - Diana Rocío Possos Beltrán
+ *
+ * Organización:
+ * 1. Accesibilidad
+ * 2. Estados de Interacción
+ * 3. Animaciones de Entrada
+ * 4. Helpers de Layout
+ * 5. Tipografía
+ */
+
+/* ============================================
+   1. ACCESIBILIDAD
+   ============================================ */
+
+/* Respeto a preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Ocultar visualmente pero accesible para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus visible mejorado (WCAG 2.1) */
+.focus-visible:focus,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+}
+
+/* Skip to main content */
+.skip-to-main {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-decoration: none;
+    z-index: 9999;
+    transition: top var(--transition-base);
+}
+
+.skip-to-main:focus {
+    top: 0;
+}
+
+/* ============================================
+   2. ESTADOS DE INTERACCIÓN
+   ============================================ */
+
+/* Hover Lift - Elevación sutil */
+.u-hover-lift {
+    transition: transform var(--transition-micro), box-shadow var(--transition-micro);
+}
+
+.u-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.u-hover-lift:active {
+    transform: translateY(0);
+}
+
+/* Hover Scale - Escala suave */
+.u-hover-scale {
+    transition: transform var(--transition-micro);
+}
+
+.u-hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.u-hover-scale:active {
+    transform: scale(0.98);
+}
+
+/* Hover Glow - Resplandor académico */
+.u-hover-glow {
+    position: relative;
+    transition: box-shadow var(--transition-base);
+}
+
+.u-hover-glow:hover {
+    box-shadow: 0 0 20px rgba(46, 91, 255, 0.3);
+}
+
+/* Hover Brightness - Brillo suave */
+.u-hover-brighten {
+    transition: filter var(--transition-micro);
+}
+
+.u-hover-brighten:hover {
+    filter: brightness(1.1);
+}
+
+/* ============================================
+   3. ANIMACIONES DE ENTRADA
+   ============================================ */
+
+/* Fade In - Aparición suave */
+.u-fade-in {
+    animation: u-fadeIn var(--transition-smooth) var(--ease-out-quart);
+}
+
+@keyframes u-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide Up - Deslizamiento desde abajo */
+.u-slide-up {
+    animation: u-slideUp var(--transition-base) var(--ease-out-quart);
+}
+
+@keyframes u-slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale In - Expansión desde el centro */
+.u-scale-in {
+    animation: u-scaleIn var(--transition-base) var(--ease-out-quart);
+}
+
+@keyframes u-scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Reveal - Para scroll reveal */
+.u-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.u-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays para animaciones secuenciales */
+.u-stagger-1 { animation-delay: 100ms; }
+.u-stagger-2 { animation-delay: 200ms; }
+.u-stagger-3 { animation-delay: 300ms; }
+.u-stagger-4 { animation-delay: 400ms; }
+.u-stagger-5 { animation-delay: 500ms; }
+.u-stagger-6 { animation-delay: 600ms; }
+
+/* ============================================
+   4. HELPERS DE LAYOUT
+   ============================================ */
+
+/* Flexbox utilities */
+.u-flex { display: flex; }
+.u-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.u-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.u-flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Grid utilities */
+.u-grid { display: grid; }
+.u-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.u-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* Spacing utilities */
+.u-mb-sm { margin-bottom: var(--spacing-sm); }
+.u-mb-md { margin-bottom: var(--spacing-md); }
+.u-mb-lg { margin-bottom: var(--spacing-lg); }
+.u-mb-xl { margin-bottom: var(--spacing-xl); }
+.u-mb-2xl { margin-bottom: var(--spacing-2xl); }
+
+.u-mt-sm { margin-top: var(--spacing-sm); }
+.u-mt-md { margin-top: var(--spacing-md); }
+.u-mt-lg { margin-top: var(--spacing-lg); }
+
+/* Text alignment */
+.u-text-center { text-align: center; }
+.u-text-left { text-align: left; }
+.u-text-right { text-align: right; }
+
+/* ============================================
+   5. TIPOGRAFÍA
+   ============================================ */
+
+/* Mejora de legibilidad */
+.u-readable {
+    max-width: 65ch;
+    line-height: 1.8;
+}
+
+/* Truncate text */
+.u-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Line clamp */
+.u-line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.u-line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Font weights semánticos */
+.u-fw-light { font-weight: var(--font-weight-light); }
+.u-fw-normal { font-weight: var(--font-weight-normal); }
+.u-fw-medium { font-weight: var(--font-weight-medium); }
+.u-fw-semibold { font-weight: var(--font-weight-semibold); }
+.u-fw-bold { font-weight: var(--font-weight-bold); }
+
+/* ============================================
+   6. ESTADOS Y HELPERS
+   ============================================ */
+
+/* Loading state */
+.u-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.u-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--color-gray-300);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: u-spin 0.6s linear infinite;
+}
+
+@keyframes u-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Disabled state */
+.u-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Glass morphism effect */
+.u-glass {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Smooth gradient */
+.u-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+/* ============================================
+   7. RESPONSIVE UTILITIES
+   ============================================ */
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .u-hide-mobile { display: none !important; }
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+    .u-hide-desktop { display: none !important; }
+}
+
+/* ============================================
+   8. PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* GPU Acceleration para animaciones */
+.u-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Contenido que cambiará (usar con precaución) */
+.u-will-change-transform {
+    will-change: transform;
+}
+
+.u-will-change-opacity {
+    will-change: opacity;
+}
+
+/* Resetear will-change después de la animación */
+.u-reset-will-change {
+    will-change: auto;
+}
