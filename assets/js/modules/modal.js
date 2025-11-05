@@ -503,7 +503,6 @@ function initModal() {
             <h2 style="color: var(--color-primary); text-align: center; margin-bottom: 1.5rem;">Galería de Fotos</h2>
             <div id="galleryContainer" style="position: relative; max-width: 900px; margin: 0 auto;">
                 <div id="galleryImage" style="text-align: center; position: relative; min-height: 400px;">
-                    <div class="gallery-loader" id="galleryLoader"></div>
                     <img id="currentImage"
                         src="${availableImages[0].src}"
                         alt="${availableImages[0].alt}"
@@ -680,11 +679,6 @@ function initModal() {
         // Fase 1: Fade out de la imagen actual
         imgElement.classList.add('gallery-image-fadeout');
 
-        // Mostrar loader
-        if (loaderElement) {
-            loaderElement.classList.add('active');
-        }
-
         // Fase 2: Precargar nueva imagen y actualizar
         setTimeout(() => {
             const newImageData = galleryImages[currentGalleryIndex];
@@ -698,11 +692,6 @@ function initModal() {
                     // Remover clase de fadeout y agregar animación de entrada
                     imgElement.classList.remove('gallery-image-fadeout');
                     imgElement.classList.add(animationClass);
-
-                    // Ocultar loader
-                    if (loaderElement) {
-                        loaderElement.classList.remove('active');
-                    }
 
                     // Actualizar contador y descripción con animaciones
                     updateCounterAnimated(counterElement, currentGalleryIndex + 1);
@@ -723,10 +712,6 @@ function initModal() {
                     // En caso de error, revertir al índice anterior
                     currentGalleryIndex = previousIndex;
                     imgElement.classList.remove('gallery-image-fadeout');
-
-                    if (loaderElement) {
-                        loaderElement.classList.remove('active');
-                    }
 
                     isAnimating = false;
                 });
