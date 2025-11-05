@@ -353,14 +353,15 @@ function initModal() {
     // Función auxiliar para generar galería de imágenes
     function generateGalleryContent() {
         // Detectar imágenes disponibles en la carpeta galería
-        const maxImages = 5; // Límite de imágenes a buscar
+        const maxImages = 8; // Límite de imágenes a buscar
         const availableImages = [];
 
         // Intentar detectar imágenes de forma síncrona
         // Nota: En producción, verificar manualmente qué imágenes existen
         for (let i = 1; i <= maxImages; i++) {
+            const extension = i <= 4 ? 'jpg' : 'png';
             availableImages.push({
-                src: `assets/images/galeria/${i}.png`,
+                src: `assets/images/galeria/${i}.${extension}`,
                 alt: `Resultado ${i}`
             });
         }
@@ -415,16 +416,48 @@ function initModal() {
 
     // Variables globales para la galería
     let currentGalleryIndex = 0;
-    const galleryImages = [];
-
-    // Inicializar imágenes de la galería
-    for (let i = 1; i <= 5; i++) {
-        galleryImages.push({
-            src: `assets/images/galeria/${i}.png`,
-            alt: `Resultado ${i}`,
-            description: ` Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.`
-        });
-    }
+    const galleryImages = [
+        {
+            src: 'assets/images/galeria/1.jpg',
+            alt: 'Comunidad Educativa Sede Puerres',
+            description: 'Comunidad Educativa Sede Puerres'
+        },
+        {
+            src: 'assets/images/galeria/2.jpg',
+            alt: 'Fachada principal de la sede Puerres',
+            description: 'Fachada principal de la sede Puerres'
+        },
+        {
+            src: 'assets/images/galeria/3.jpg',
+            alt: 'IEM Ciudadela Educativa de Pasto Sede Principal',
+            description: 'IEM Ciudadela Educativa de Pasto Sede Principal.'
+        },
+        {
+            src: 'assets/images/galeria/4.jpg',
+            alt: 'Equipos tecnológicos disponibles en la Sede Puerres',
+            description: 'Equipos tecnológicos disponibles en la Sede Puerres.'
+        },
+        {
+            src: 'assets/images/galeria/5.png',
+            alt: 'Resultado 5',
+            description: 'Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.'
+        },
+        {
+            src: 'assets/images/galeria/6.png',
+            alt: 'Resultado 6',
+            description: 'Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.'
+        },
+        {
+            src: 'assets/images/galeria/7.png',
+            alt: 'Resultado 7',
+            description: 'Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.'
+        },
+        {
+            src: 'assets/images/galeria/8.png',
+            alt: 'Resultado 8',
+            description: 'Galería fotográfica del proyecto, donde se muestran las principales actividades, procesos y resultados desarrollados durante su ejecución.'
+        }
+    ];
 
     // Función de navegación de galería (expuesta globalmente)
     window.galleryNavigate = function(direction) {
