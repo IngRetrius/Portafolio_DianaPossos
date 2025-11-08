@@ -71,10 +71,18 @@ function init() {
         } else {
             console.error('❌ initCarousel no está definida');
         }
-        
+
+        // 9. eBook Module
+        if (typeof initEbook === 'function') {
+            initEbook();
+            console.log('✓ Módulo eBook inicializado');
+        } else {
+            console.error('❌ initEbook no está definida');
+        }
+
         console.log('');
         console.log('✅ Portafolio híbrido inicializado correctamente');
-        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel');
+        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook');
         
     } catch (error) {
         console.error('❌ Error crítico al inicializar:', error);

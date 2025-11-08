@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="assets/css/components/contact.css">
     <link rel="stylesheet" href="assets/css/components/footer.css">
     <link rel="stylesheet" href="assets/css/components/carousel.css">
+    <link rel="stylesheet" href="assets/css/components/ebook.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -195,21 +196,31 @@
             </h2>
             <div class="referencing__content">
                 <div class="ebook__card">
-                    <div class="ebook__icon">📚</div>
-                    <h3 class="ebook__title">E-book del Proyecto</h3>
+                    <h3 class="ebook__title">eBook del Proyecto</h3>
                     <p class="ebook__description">
-                        Documento digital interactivo que presenta el marco de referencia del proyecto 
-                        “Fortalecimiento de la memoria a corto plazo mediante Wordwall”. Integra los marcos teórico, conceptual, legal y contextual, 
+                        Documento digital interactivo que presenta el marco de referencia del proyecto
+                        "Fortalecimiento de la memoria a corto plazo mediante Wordwall". Integra los marcos teórico, conceptual, legal y contextual,
                         junto con recursos multimedia que facilitan la comprensión del enfoque inclusivo, la metodología y los fundamentos pedagógicos de la investigación.
                     </p>
                     <div class="ebook__features">
-                        <button class="btn btn--ebook" onclick="openModal('potcast')">🎙️ Ver Podcast</button>
-                        <button class="btn btn--ebook" onclick="openModal('video-metodologia')">🎥 Ver Video</button>
-                        <button class="btn btn--ebook" onclick="openModal('galeria')">📸 Ver Galería</button>
+                        <div class="ebook__feature-tag">
+                            <span>Incluye Podcast</span>
+                        </div>
+                        <div class="ebook__feature-tag">
+                            <span>Incluye Video</span>
+                        </div>
+                        <div class="ebook__feature-tag">
+                            <span>Incluye Galería</span>
+                        </div>
+                        <div class="ebook__feature-tag">
+                            <span>9 Capítulos</span>
+                        </div>
                     </div>
                     <div class="ebook__actions">
-                        <button class="btn btn--primary" onclick="openModal('ebook')">Leer Online</button>
-                        <a href="documents/Referenciando%20-%20Ebook.pdf" class="btn btn--secondary" download="Referenciando-Ebook.pdf">
+                        <button class="btn btn--primary" onclick="openEbook()">
+                            Abrir eBook Interactivo
+                        </button>
+                        <a href="documents/Referenciando%20-%20Ebook.pdf" class="btn btn--secondary" download="Marco-Referencial-Proyecto.pdf">
                             Descargar PDF
                         </a>
                     </div>
@@ -498,12 +509,14 @@
     </footer>
 
     <!-- SCRIPTS -->
+    <script src="assets/js/data/ebookData.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
     <script src="assets/js/modules/scroll.js"></script>
     <script src="assets/js/modules/modal.js"></script>
     <script src="assets/js/modules/tabs.js"></script>
     <script src="assets/js/modules/animations.js"></script>
     <script src="assets/js/modules/carousel.js"></script>
+    <script src="assets/js/modules/ebook.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
