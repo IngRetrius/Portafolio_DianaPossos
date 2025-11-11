@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
+always update claude.md after every commit.
 ## Project Overview
 
 This is an academic portfolio website for Diana Rocío Possos Beltrán's Master's thesis in Digital Resources Applied to Education at Universidad de Cartagena. The site showcases research on strengthening short-term memory in students with cognitive disabilities using Wordwall and gamification strategies.

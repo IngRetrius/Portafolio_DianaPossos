@@ -80,9 +80,17 @@ function init() {
             console.error('❌ initEbook no está definida');
         }
 
+        // 10. Board Game Module
+        if (typeof initBoardGame === 'function') {
+            initBoardGame();
+            console.log('✓ Juego de mesa virtual inicializado');
+        } else {
+            console.error('❌ initBoardGame no está definida');
+        }
+
         console.log('');
         console.log('✅ Portafolio híbrido inicializado correctamente');
-        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook');
+        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook, BoardGame');
         
     } catch (error) {
         console.error('❌ Error crítico al inicializar:', error);
