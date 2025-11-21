@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nOptimizar visualización del tablero didáctico para pantallas Full HD\n\nSe implementa un sistema de juego de mesa interactivo que presenta la unidad didáctica de 8 semanas de forma visual y gamificada. Incluye integración de casillas especiales (competencias, evaluación, recursos, infografía) directamente en el tablero, con diseño optimizado para resolución 1920x1080.\n\nCambios principales:\n- Integración de tablero de juego con 8 semanas + casillas especiales\n- Diseño responsivo con modal optimizado para Full HD (1600px-1700px)\n- Sistema de progreso con localStorage y visualización de avatar\n- Infografía integrada (800x2000px) en sección correspondiente\n- Conectores visuales simplificados entre secciones del tablero\n- Eliminación de elementos flotantes, todo integrado en layout lineal\n\nArchivos modificados:\n- index.html: Botón de acceso al tablero en Unidad Didáctica\n- main.js: Inicialización del módulo board-game\n- CLAUDE.md: Actualización de documentación del proyecto\n\nArchivos nuevos:\n- assets/css/components/board-game.css: Estilos del tablero con media queries Full HD\n- assets/js/modules/board-game.js: Lógica del juego y renderizado\n- assets/js/data/board-game-data.js: Contenido de las 8 semanas + especiales\n- assets/js/data/evaluation-data.js: Sistema de evaluación y competencias\n- assets/images/Infografía [...].jpg: Recurso visual del programa\n\nArchivos eliminados:\n- UI-UX-ANALYSIS.md: Análisis técnico ya integrado\nEOF\n)\")",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

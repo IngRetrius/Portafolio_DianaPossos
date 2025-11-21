@@ -88,9 +88,25 @@ function init() {
             console.error('❌ initBoardGame no está definida');
         }
 
+        // 11. Instructional Design Module
+        if (typeof initInstructionalDesign === 'function') {
+            initInstructionalDesign();
+            console.log('✓ Módulo de Diseño Instruccional inicializado');
+        } else {
+            console.error('❌ initInstructionalDesign no está definida');
+        }
+
+        // 12. Infographic Hotspots Module
+        if (typeof initInfographicHotspots === 'function') {
+            initInfographicHotspots();
+            console.log('✓ Módulo de Infografía con Hotspots inicializado');
+        } else {
+            console.error('❌ initInfographicHotspots no está definida');
+        }
+
         console.log('');
         console.log('✅ Portafolio híbrido inicializado correctamente');
-        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook, BoardGame');
+        console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook, BoardGame, InstructionalDesign, InfographicHotspots');
         
     } catch (error) {
         console.error('❌ Error crítico al inicializar:', error);
@@ -101,18 +117,48 @@ function init() {
 // FUNCIONES ADICIONALES DE UTILIDAD
 // ====================================
 
+/**
+ * Guarda la posición actual del scroll antes de ir a infografia.html
+ */
+function saveScrollPosition() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    sessionStorage.setItem('portfolioScrollPosition', scrollY);
+    console.log('Posición guardada:', scrollY);
+}
+
+/**
+ * Restaura la posición del scroll al volver de infografia.html
+ */
+function restoreScrollPosition() {
+    const savedPosition = sessionStorage.getItem('portfolioScrollPosition');
+    if (savedPosition !== null) {
+        const position = parseInt(savedPosition, 10);
+        console.log('Restaurando posición:', position);
+
+        // Esperar un momento para que el DOM esté completamente cargado
+        setTimeout(() => {
+            window.scrollTo({
+                top: position,
+                behavior: 'smooth'
+            });
+            // Limpiar la posición guardada
+            sessionStorage.removeItem('portfolioScrollPosition');
+        }, 100);
+    }
+}
+
 // Detección de sección visible (útil para analytics)
 function getCurrentSection() {
     const sections = document.querySelectorAll('section[id]');
     let currentSection = '';
-    
+
     sections.forEach(section => {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 100 && rect.bottom >= 100) {
             currentSection = section.id;
         }
     });
-    
+
     return currentSection;
 }
 

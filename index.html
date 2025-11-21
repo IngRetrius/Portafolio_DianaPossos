@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="assets/css/components/carousel.css">
     <link rel="stylesheet" href="assets/css/components/ebook.css">
     <link rel="stylesheet" href="assets/css/components/board-game.css">
+    <link rel="stylesheet" href="assets/css/components/instructional-design.css">
+    <link rel="stylesheet" href="assets/css/components/infographic-hotspots.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -258,9 +260,9 @@
                     
                     <div class="tab__panel" id="infografia">
                         <div class="panel__content">
-                            <h3>Infografía</h3>
-                            <p>Visualización de los conceptos clave del proyecto</p>
-                            <button class="btn btn--primary" onclick="openModal('infografia')">Ver Infografía</button>
+                            <h3>Infografía Interactiva</h3>
+                            <p>Explora el diseño instruccional mediante puntos interactivos en cada sección</p>
+                            <button class="btn btn--primary" onclick="openInfographicHotspots()">Explorar Infografía Interactiva</button>
                         </div>
                     </div>
                     
@@ -275,8 +277,8 @@
                     <div class="tab__panel" id="diseno">
                         <div class="panel__content">
                             <h3>Diseño Instruccional</h3>
-                            <p>Planificación pedagógica de las intervenciones</p>
-                            <button class="btn btn--primary" onclick="openModal('diseno')">Ver Diseño</button>
+                            <p>Planificación pedagógica basada en el modelo ADDIE con navegación interactiva por secciones</p>
+                            <a href="infografia.html" class="btn btn--primary" onclick="saveScrollPosition()">Explorar Diseño Instruccional</a>
                         </div>
                     </div>
                     
@@ -521,6 +523,10 @@
     <script src="assets/js/data/board-game-data.js"></script>
     <script src="assets/js/data/evaluation-data.js"></script>
     <script src="assets/js/modules/board-game.js"></script>
+    <script src="assets/js/data/instructional-design-data.js"></script>
+    <script src="assets/js/modules/instructional-design.js"></script>
+    <script src="assets/js/data/infographic-hotspots-data.js"></script>
+    <script src="assets/js/modules/infographic-hotspots.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía - Diseño Instruccional</title>
+    <link rel="stylesheet" href="assets/css/infografia.css">
+</head>
+<body>
+    <div class="infografia-container">
+        <!-- Header de navegación -->
+        <header class="infografia-header">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='index.html'" aria-label="Volver al portafolio">
+                    <span class="icon">&larr;</span>
+                    <span class="text">Volver</span>
+                </button>
+                <h1 class="infografia-title">Diseño Instruccional</h1>
+            </div>
+
+            <div class="header-right">
+                <span class="section-indicator" id="sectionIndicator">Previsualización</span>
+                <a href="documents/Diseño instruccional.pdf" target="_blank" class="btn-pdf" aria-label="Abrir PDF completo">
+                    <span class="icon">&#128196;</span>
+                    <span class="text">Ver PDF</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Panel de navegación lateral -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Secciones</h2>
+            </div>
+
+            <nav class="nav-sections">
+                <button class="nav-item active" data-section="0" onclick="navigateToSection(0)">
+                    <span class="nav-number">&#128065;</span>
+                    <span class="nav-title">Previsualización</span>
+                </button>
+                <button class="nav-item" data-section="1" onclick="navigateToSection(1)">
+                    <span class="nav-number">1</span>
+                    <span class="nav-title">Contexto y Análisis</span>
+                </button>
+                <button class="nav-item" data-section="2" onclick="navigateToSection(2)">
+                    <span class="nav-number">2</span>
+                    <span class="nav-title">Diseño y Estructura</span>
+                </button>
+                <button class="nav-item" data-section="3" onclick="navigateToSection(3)">
+                    <span class="nav-number">3</span>
+                    <span class="nav-title">Evaluación y Análisis</span>
+                </button>
+                <button class="nav-item" data-section="4" onclick="navigateToSection(4)">
+                    <span class="nav-number">4</span>
+                    <span class="nav-title">Implementación y Resultados</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="zoom-controls">
+                    <h3>Zoom</h3>
+                    <div class="zoom-buttons">
+                        <button class="btn-zoom" onclick="zoomIn()" aria-label="Acercar">+</button>
+                        <span class="zoom-level" id="zoomLevel">300%</span>
+                        <button class="btn-zoom" onclick="zoomOut()" aria-label="Alejar">-</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área principal de visualización -->
+        <main class="main-viewport">
+            <div class="image-container" id="imageContainer">
+                <img
+                    src="documents/Infografia diseño instruccional.png"
+                    alt="Infografía del Diseño Instruccional"
+                    class="infografia-image"
+                    id="infografiaImage">
+            </div>
+        </main>
+
+        <!-- Controles de navegación inferior -->
+        <footer class="controls-footer">
+            <button class="btn-nav btn-prev" id="btnPrev" onclick="navigateToSection('prev')" disabled>
+                <span class="icon">&larr;</span>
+                <span class="text">Anterior</span>
+            </button>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                </div>
+                <span class="progress-text" id="progressText">1 de 5</span>
+            </div>
+
+            <button class="btn-nav btn-next" id="btnNext" onclick="navigateToSection('next')">
+                <span class="text">Siguiente</span>
+                <span class="icon">&rarr;</span>
+            </button>
+        </footer>
+    </div>
+
+    <script src="assets/js/infografia.js"></script>
+</body>
+</html>

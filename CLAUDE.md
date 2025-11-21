@@ -1,7 +1,9 @@
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-always update claude.md after every commit.
+Always update claude.md after every commit.
+
+**Última actualización:** Implementación del módulo de Diseño Instruccional (Modelo ADDIE)
 ## Project Overview
 
 This is an academic portfolio website for Diana Rocío Possos Beltrán's Master's thesis in Digital Resources Applied to Education at Universidad de Cartagena. The site showcases research on strengthening short-term memory in students with cognitive disabilities using Wordwall and gamification strategies.
@@ -26,9 +28,15 @@ assets/js/
 │   ├── modal.js         # Modal system for viewing content
 │   ├── tabs.js          # Tab switching in "Diseñando" section
 │   ├── carousel.js      # Carousel for project presentation
-│   └── animations.js    # General animations + intersection observers
+│   ├── animations.js    # General animations + intersection observers
+│   ├── ebook.js         # eBook module with chapters navigation
+│   ├── board-game.js    # Board game module for didactic unit
+│   └── instructional-design.js  # Instructional design module (ADDIE model)
 └── data/
-    └── projectData.js   # Static data (if needed)
+    ├── ebookData.js              # eBook content and structure
+    ├── board-game-data.js        # Board game content
+    ├── evaluation-data.js        # Evaluation data
+    └── instructional-design-data.js  # Instructional design sections
 ```
 
 **Initialization flow:**
@@ -112,11 +120,35 @@ The "Diseñando" section uses client-side tabs without page reload:
 - Clicking a tab shows/hides panels using `.active` class
 - Implementation: `assets/js/modules/tabs.js`
 
+### Instructional Design Module (NEW)
+
+Interactive modal-based system for exploring instructional design based on the ADDIE model:
+- **12 sections:** Introducción, Fundamentación, Análisis, Objetivos, Diseño de Secuencia, Desarrollo de Recursos, Implementación, Evaluación, Cronograma, Recursos, Criterios de Calidad, Consideraciones Éticas
+- **Two view modes:**
+  - Sections view: Navigate through 12 structured sections with sidebar index
+  - Infographic view: Display the PDF infographic with zoom controls
+- **Features:**
+  - Keyboard navigation (arrows, Home, End, Escape)
+  - Progress tracking with visual progress bar
+  - Smooth animations for section transitions
+  - Responsive design for mobile/tablet/desktop
+- **Implementation:** `assets/js/modules/instructional-design.js`
+- **Data:** `assets/js/data/instructional-design-data.js`
+- **Styles:** `assets/css/components/instructional-design.css`
+
+**Usage pattern:**
+```javascript
+// Called from onclick attributes in HTML
+openInstructionalDesign()  // Opens the instructional design modal
+```
+
 ## File Locations
 
 ### Documents
 - `documents/tesis-completa.pdf` - Full thesis PDF (1.4 MB)
-- `documents/ebook.pdf` - E-book version (if separate from thesis)
+- `documents/Referenciando - Ebook.pdf` - E-book version with interactive content
+- `documents/Diseño instruccional.pdf` - Complete instructional design document (764.7 KB)
+- `documents/Infografia diseño instruccional.pdf` - Instructional design infographic (296.8 KB)
 
 ### Images & Media
 - `assets/images/avatar.jpg` - Profile photo (102 KB)

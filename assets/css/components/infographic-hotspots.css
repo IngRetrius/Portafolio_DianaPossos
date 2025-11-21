@@ -1,0 +1,482 @@
+/* ===================================
+   INFOGRAPHIC HOTSPOTS
+   Interactive infographic viewer with clickable hotspots
+   =================================== */
+
+.infographic-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+    overflow: hidden;
+}
+
+.infographic-modal__content {
+    position: relative;
+    width: 95%;
+    height: 95%;
+    max-width: 1600px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.infographic-modal__header {
+    background: linear-gradient(135deg, var(--color-primary, #8b5cf6), var(--color-secondary, #a78bfa));
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.infographic-modal__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.infographic-modal__close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.infographic-modal__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.infographic-modal__body {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    background: #f8f9fa;
+}
+
+.infographic-container {
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.infographic-container__image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.infographic-container__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Hotspot markers */
+.hotspot {
+    position: absolute;
+    pointer-events: all;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.hotspot__marker {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(139, 92, 246, 0.9);
+    border: 3px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s ease infinite;
+}
+
+.hotspot:hover .hotspot__marker {
+    transform: scale(1.2);
+    background: rgba(139, 92, 246, 1);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+    animation: none;
+}
+
+.hotspot__marker::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(139, 92, 246, 0.6);
+    border-radius: 50%;
+    animation: ripple 2s ease infinite;
+}
+
+/* Hotspot tooltip */
+.hotspot__tooltip {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    pointer-events: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.hotspot__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: white;
+}
+
+.hotspot:hover .hotspot__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Detail panel (appears when clicking a hotspot) */
+.detail-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.detail-panel__header {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-panel__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    opacity: 0.9;
+    line-height: 1;
+}
+
+.detail-panel__title {
+    flex: 1;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.detail-panel__close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.detail-panel__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.detail-panel__body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.detail-panel__body h3 {
+    color: #8b5cf6;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+
+.detail-panel__body h3:first-child {
+    margin-top: 0;
+}
+
+.detail-panel__body p {
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.detail-panel__body ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.detail-panel__body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.detail-panel__body strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Info panel (instructions) */
+.info-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    z-index: 100;
+    animation: slideInLeft 0.5s ease;
+}
+
+.info-panel__title {
+    font-weight: 700;
+    color: #8b5cf6;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.info-panel__text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Backdrop for detail panel */
+.detail-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.detail-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.8);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .infographic-modal__content {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .infographic-modal__header {
+        padding: 1rem;
+    }
+
+    .infographic-modal__title {
+        font-size: 1.2rem;
+    }
+
+    .hotspot__marker {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .hotspot__tooltip {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .detail-panel {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .detail-panel__header {
+        padding: 1rem;
+    }
+
+    .detail-panel__number {
+        font-size: 2rem;
+    }
+
+    .detail-panel__title {
+        font-size: 1.2rem;
+    }
+
+    .detail-panel__body {
+        padding: 1.5rem;
+    }
+
+    .info-panel {
+        position: static;
+        margin: 1rem;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hotspot__marker {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+        border-width: 2px;
+    }
+
+    .hotspot__tooltip {
+        display: none;
+    }
+
+    .detail-panel__body h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Zoom controls */
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+.zoom-btn {
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.zoom-btn:hover {
+    background: #7c3aed;
+    transform: scale(1.1);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}

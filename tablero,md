@@ -1,0 +1,959 @@
+# JUEGO DE MESA VIRTUAL - DOCUMENTO DE DISEÑO COMPLETO
+
+## PROPÓSITO GENERAL DEL PROYECTO
+
+Este documento define la estructura completa del módulo **"Juego de Mesa Virtual"**, una propuesta de **visualización interactiva** desarrollada para explicar, de manera gamificada y accesible, **toda la unidad didáctica** contenida en el documento "Referenciando - Actividad Didáctica" (`Referenciando - Actividad didactica.pdf`).
+
+El propósito principal es **transformar los contenidos pedagógicos en una experiencia de exploración digital**, en la que el visitante del portafolio web recorra las 8 semanas de la secuencia didáctica como si jugara un tablero de mesa.
+
+---
+
+## CONTEXTO DEL PROYECTO
+
+**Proyecto Base:** Portafolio Académico de Diana Rocío Possos Beltrán  
+**Tesis:** "Fortalecimiento de la memoria a corto plazo mediada por la secuencia didáctica como estrategia pedagógica, a través de la plataforma Wordwall en estudiantes de inclusión de grado quinto de la Ciudadela Educativa de Pasto, Sede Puerres."  
+**Universidad:** Universidad de Cartagena - Maestría en Recursos Digitales Aplicados a la Educación  
+**Año:** 2025
+
+**Documento Base:** `C:\Users\USUARIO1\Documents\Diana Rocio\Portafolio\Referenciando - Actividad didactica.pdf`
+
+---
+
+## INSTRUCCIONES DE DESARROLLO
+
+### Stack Tecnológico
+
+- **HTML5:** Estructura semántica y accesible
+- **CSS3:** Variables CSS del sistema de diseño existente (`assets/css/utils/variables.css`)
+- **JavaScript (ES6+):** Vanilla JavaScript, sin frameworks externos
+- **Arquitectura Modular:** Siguiendo el patrón establecido en el portafolio
+
+### Estructura de Archivos
+
+El juego se integrará al portafolio existente siguiendo la arquitectura modular:
+
+```
+assets/
+├── css/
+│   └── components/
+│       └── board-game.css        # Estilos específicos del juego de mesa
+├── js/
+│   ├── modules/
+│   │   └── board-game.js         # Módulo principal del juego (lógica, navegación, animaciones)
+│   └── data/
+│       ├── board-game-data.js    # Contenido de las 8 semanas estructurado
+│       └── evaluation-data.js    # Criterios de evaluación y competencias
+└── images/
+    └── board-game/               # Imágenes específicas del juego (si son necesarias)
+```
+
+### Integración con el Portafolio
+
+- **Acceso:** Sección "Diseñando" (`#disenando`) → Tab "Unidad Didáctica" → Botón "Explorar como Juego de Mesa"
+- **Patrón de implementación:** Seguir el patrón del módulo eBook (`assets/js/modules/ebook.js`) - crear modal propio completo, NO usar el sistema de modales genérico
+- **Modal propio:** El juego creará su propio modal a pantalla completa similar al eBook, con estructura independiente
+- **Variables CSS:** Usar las variables definidas en `assets/css/utils/variables.css`:
+  - `--color-primary`, `--color-secondary` para colores de marca
+  - `--spacing-*` para espaciado consistente
+  - `--font-*` para tipografía
+  - `--transition-*` para animaciones
+  - `--shadow-*` para sombras
+- **Z-index:** Usar `z-index: 9999` (igual que el eBook, menor que modales multimedia que usan 10000+)
+- **Iconos:** Usar SVG inline (como en el eBook), NO usar emojis
+
+### Principios de Diseño
+
+- **Iconos SVG:** Usar SVG inline para iconos (como en el eBook), NO usar emojis ni íconos no documentados
+- **Patrón eBook:** Seguir la estructura y estilo del módulo eBook como referencia
+- **Responsive:** Diseño mobile-first usando los breakpoints existentes (`--breakpoint-sm`, `--breakpoint-md`, `--breakpoint-lg`)
+- **Accesibilidad:** Etiquetas ARIA, navegación por teclado (Arrow keys, Tab, Enter, Escape), contraste WCAG 2.1 AA
+- **Modularidad:** Código separado por responsabilidades, funciones reutilizables
+- **Performance:** Lazy loading de imágenes, animaciones optimizadas con CSS transitions
+- **Persistencia:** Usar `localStorage` para guardar progreso del jugador (similar al eBook que guarda el capítulo actual)
+
+---
+
+## CONCEPTO GENERAL
+
+**Nombre del juego:**  
+**Wordwall Quest: 8 Semanas de Memoria**  
+*(Subtítulo: El Camino del Aprendizaje Inclusivo)*
+
+**Objetivo del juego:**  
+Convertir la secuencia didáctica del trabajo de maestría en una **experiencia interactiva**, donde cada casilla del tablero representa una parte del proceso pedagógico de fortalecimiento de la memoria a corto plazo mediante actividades gamificadas con Wordwall.
+
+**Metáfora principal:**
+- **El jugador:** Representa al docente, investigador o visitante del portafolio explorando la secuencia didáctica
+- **El tablero:** Representa las 8 semanas de la intervención educativa
+- **Las fichas:** Representan el progreso del jugador a través de las semanas
+- **Los dados:** Representan las decisiones o rutas de exploración (modo opcional)
+- **Las casillas:** Representan los contenidos, actividades y evaluaciones de cada semana
+- **Las recompensas:** Simbolizan logros, badges y materiales descargables
+
+---
+
+## ACCESO E INTERFAZ
+
+### Ubicación en el Portafolio
+
+**Ruta de acceso:**  
+`index.html` → Sección "Diseñando" (`#disenando`) → Tab "Unidad Didáctica" → Botón "Explorar como Juego de Mesa"
+
+**Implementación en index.html:**
+```html
+<!-- En index.html, línea ~254, reemplazar el botón "Ver Unidad" -->
+<div class="tab__panel active" id="unidad">
+    <div class="panel__content">
+        <h3>Unidad Didáctica</h3>
+        <p>Secuencia de actividades diseñadas para fortalecer la memoria a corto plazo</p>
+        <button class="btn btn--primary" onclick="openBoardGame()">
+            Explorar como Juego de Mesa
+        </button>
+    </div>
+</div>
+```
+
+**Carga de scripts en index.html:**
+```html
+<!-- Agregar antes de main.js (después de ebook.js, línea ~519) -->
+<script src="assets/js/data/board-game-data.js"></script>
+<script src="assets/js/modules/board-game.js"></script>
+<script src="assets/js/main.js"></script>
+```
+
+**Carga de estilos en index.html:**
+```html
+<!-- Agregar después de ebook.css (línea ~28) -->
+<link rel="stylesheet" href="assets/css/components/board-game.css">
+```
+
+### Flujo de Interacción
+
+1. **Inicio:** El usuario hace clic en "Explorar como Juego de Mesa" desde el tab "Unidad Didáctica"
+2. **Modal:** Se abre un modal a pantalla completa (siguiendo el patrón del eBook)
+3. **Tutorial opcional:** Breve introducción visual (5-10 segundos, opcional saltar con botón)
+4. **Inicio del juego:** Comienza desde la casilla "START" o desde la última semana visitada (si hay progreso guardado)
+5. **Exploración:** Navega por las 8 semanas y casillas especiales
+6. **Navegación:** Botones "Anterior" y "Siguiente" para moverse entre semanas, o click directo en casillas
+7. **Cierre:** Al cerrar (botón X o Escape), se guarda el progreso en `localStorage`
+8. **Persistencia:** Al reabrir, continúa desde la última semana visitada
+
+### Modos de Exploración
+
+- **Modo Secuencial (Recomendado):** Avanza semana por semana de forma lineal
+- **Modo Libre:** Permite visitar cualquier casilla ya descubierta
+- **Modo Dado (Opcional):** Movimiento aleatorio según número obtenido (para exploración casual)
+- **Modo Exploración:** Muestra vistas previas al pasar el cursor sobre casillas
+
+---
+
+## ESTRUCTURA GENERAL DEL TABLERO
+
+### Diseño del Tablero
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    WORDWALL QUEST: 8 SEMANAS                    │
+│            Fortalecimiento de la Memoria Inclusiva              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  START ──→ [S1] ──→ [S2] ──→ [S3] ──→ [S4]                    │
+│    │                                                              │
+│    │                                                              │
+│    └──→ [ESP] ←──────────────────────────────────┐              │
+│         │                                          │              │
+│         ↓                                          │              │
+│         [S5] ──→ [S6] ──→ [S7] ──→ [S8] ──→ META │              │
+│                                                   │              │
+│  [COMP] [EVAL] [REC] [INFO] [LOG] [CERT] ◄──────┘              │
+│                                                                 │
+│  Controles: [◄ Anterior] [Siguiente ►] [Cerrar]                │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Casillas del Tablero (Total: 15+ casillas)
+
+**Casillas principales (8 semanas):**
+- `START` - Casilla de inicio
+- `S1` - Semana 1: Diagnóstico y familiarización
+- `S2` - Semana 2: Memoria Visual (Parte 1)
+- `S3` - Semana 3: Memoria Visual (Parte 2)
+- `S4` - Semana 4: Memoria Auditiva (Parte 1)
+- `S5` - Semana 5: Memoria Auditiva (Parte 2)
+- `S6` - Semana 6: Memoria Secuencial
+- `S7` - Semana 7: Memoria Asociativa
+- `S8` - Semana 8: Consolidación y cierre
+- `META` - Casilla final
+
+**Casillas especiales:**
+- `ESP` - Casilla especial intermedia (puede contener competencias o recursos)
+- `COMP` - Competencias (modal con información de competencias generales y específicas)
+- `EVAL` - Evaluación (modal con criterios de evaluación diagnóstica, formativa y sumativa)
+- `REC` - Recursos (modal con enlaces a materiales descargables)
+- `INFO` - Infografía (modal con visualización de conceptos clave)
+- `LOG` - Logros (modal con badges y certificados obtenidos)
+- `CERT` - Certificado (generación de certificado digital al completar todas las semanas)
+
+---
+
+## FASES Y CONTENIDOS PRINCIPALES
+
+### FASE INICIAL (Semana 1)
+
+**Título:** Diagnóstico y Familiarización con Wordwall
+
+**Contenidos:**
+- Introducción a la memoria a corto plazo
+- Presentación de la plataforma Wordwall
+- Objetivos de la secuencia didáctica
+- Actividades de diagnóstico:
+  - Busca la pareja (objetos del aula)
+  - Voltear fichas (animales)
+  - Rueda aleatoria (presentación personal)
+
+**Objetivo:** Identificar el nivel inicial de memoria de los estudiantes y familiarizarlos con los entornos digitales.
+
+**Duración:** 3 sesiones de 20 minutos
+
+**Datos a mostrar en la casilla:**
+- Objetivo de la semana
+- Duración estimada
+- Actividades principales
+- Enlaces a recursos Wordwall (si están disponibles)
+- Botón "Continuar" para avanzar a la siguiente semana
+
+---
+
+### FASE DE DESARROLLO (Semanas 2-7)
+
+#### Módulo A - Memoria Visual (Semanas 2-3)
+
+**Semana 2: Memoria Visual - Reconocimiento Básico**
+- Reconocimiento de formas, colores y objetos
+- Asociación imagen-palabra básica
+- Actividades:
+  - Busca la pareja: frutas y colores
+  - Abre la caja: elementos del entorno rural
+  - Diagrama etiquetado: partes del cuerpo
+- Duración: 3 sesiones de 25 minutos
+
+**Semana 3: Memoria Visual - Asociación Avanzada**
+- Asociación imagen-palabra compleja
+- Reconocimiento de patrones visuales
+- Actividades:
+  - Busca la pareja avanzada: categorías
+  - Memoria visual con secuencias
+  - Identificación de diferencias
+- Duración: 3 sesiones de 25 minutos
+
+#### Módulo B - Memoria Auditiva (Semanas 4-5)
+
+**Semana 4: Memoria Auditiva - Retención Básica**
+- Retención de palabras escuchadas
+- Asociación sonido-imagen inicial
+- Actividades:
+  - Palabra faltante (audio)
+  - Cuestionario con audio
+  - Repetición de secuencias auditivas
+- Duración: 3 sesiones de 25 minutos
+
+**Semana 5: Memoria Auditiva - Integración**
+- Integración de información auditiva
+- Asociación sonido-imagen compleja
+- Actividades:
+  - Juego de concurso auditivo
+  - Memoria auditiva con historias
+  - Identificación de sonidos del entorno
+- Duración: 3 sesiones de 25 minutos
+
+#### Módulo C - Memoria Secuencial (Semana 6)
+
+**Semana 6: Memoria Secuencial**
+- Orden y secuencia de eventos
+- Retención de pasos en procesos
+- Actividades:
+  - Ordenar rutinas escolares
+  - Persecución en laberinto
+  - Rueda aleatoria: secuencia de hechos
+  - Secuencias temporales
+- Duración: 3 sesiones de 25 minutos
+
+#### Módulo D - Memoria Asociativa (Semana 7)
+
+**Semana 7: Memoria Asociativa**
+- Relaciones conceptuales y categorización
+- Asociación de conceptos relacionados
+- Actividades:
+  - Clasificación por grupos
+  - Busca la pareja avanzada (conceptos)
+  - Cuestionario de asociaciones
+  - Organización de información
+- Duración: 3 sesiones de 25 minutos
+
+---
+
+### FASE DE CONSOLIDACIÓN (Semana 8)
+
+**Título:** Aplicación Práctica, Autoevaluación y Cierre
+
+**Actividades:**
+- Juego de memoria grupal
+- Caja de logros personales
+- Actividad práctica sin tecnología ("Mercado de la memoria")
+- Autoevaluación con pictogramas
+- Generación de certificado digital
+
+**Objetivo:** Consolidar los aprendizajes, evaluar el progreso y celebrar los logros alcanzados.
+
+**Duración:** 4 sesiones de 30 minutos
+
+---
+
+## TIPOS DE CASILLAS
+
+### Casillas Informativas (Semanas 1-8)
+
+**Estructura de contenido:**
+- **Título:** Nombre de la semana
+- **Objetivo:** Objetivo específico de la semana
+- **Duración:** Tiempo estimado de implementación
+- **Contenidos:** Lista de contenidos principales
+- **Actividades:** Lista de actividades con Wordwall
+- **Recursos:** Enlaces a materiales (si están disponibles)
+- **Navegación:** Botones "Anterior" y "Siguiente"
+
+**Diseño visual:**
+- Fondo con color de la semana (usar `--color-primary` con variaciones)
+- Icono o número de semana
+- Tarjeta con sombra (`--shadow-lg`)
+- Animación de entrada al abrir
+
+### Casillas Interactivas
+
+**Características:**
+- Incluyen animaciones al pasar el cursor
+- Vínculos a actividades Wordwall (simuladas o reales)
+- Imágenes o diagramas ilustrativos
+- Botones de acción ("Jugar actividad", "Ver recursos")
+
+### Casillas de Desafío (Opcional)
+
+**Características:**
+- Mini cuestionarios sobre el contenido de la semana
+- Pruebas cortas para reforzar el aprendizaje
+- Retroalimentación inmediata
+- Sistema de puntos (+10 puntos por respuesta correcta)
+
+### Casillas Especiales
+
+**COMP - Competencias:**
+- Modal con información de competencias generales y específicas
+- Competencias por tipo de discapacidad (retardo mental leve/moderado, TEA, trastornos mixtos)
+- Diseño visual con tarjetas por competencia
+
+**EVAL - Evaluación:**
+- Modal con criterios de evaluación diagnóstica, formativa y sumativa
+- Rúbricas adaptadas por tipo de discapacidad
+- Sistema de evaluación gamificado (puntos, badges)
+
+**REC - Recursos:**
+- Modal con enlaces a materiales descargables
+- Pictogramas, materiales visuales
+- Enlaces a actividades Wordwall
+- Recursos para docentes y familias
+
+**INFO - Infografía:**
+- Modal con visualización de conceptos clave
+- Diagramas de flujo de la secuencia didáctica
+- Gráficos de progreso esperado
+- Información del marco normativo
+
+**LOG - Logros:**
+- Modal con badges obtenidos
+- Progreso del jugador
+- Estadísticas de completitud
+- Lista de certificados disponibles
+
+**CERT - Certificado:**
+- Generación de certificado digital al completar todas las semanas
+- Descarga en formato PDF
+- Personalización con nombre del jugador (opcional)
+
+---
+
+## OBJETIVOS Y COMPETENCIAS
+
+### Objetivo General
+
+Fortalecer la memoria a corto plazo mediante actividades gamificadas con Wordwall, promoviendo inclusión y autonomía en estudiantes de grado quinto con necesidades educativas especiales.
+
+### Objetivos Específicos
+
+1. Mejorar la retención visual y auditiva de información
+2. Estimular la atención sostenida en actividades estructuradas
+3. Promover la motivación y autoestima mediante logros y retroalimentación positiva
+4. Transferir estrategias de memoria a la vida escolar y cotidiana
+
+### Competencias General
+
+1. **Cognitiva:** Procesar y retener información temporal de manera efectiva
+2. **Comunicativa:** Expresar y comprender ideas mediante múltiples canales
+3. **Digital:** Usar recursos tecnológicos accesibles para el aprendizaje
+4. **Inclusiva:** Valorar la diversidad en el aprendizaje y respetar diferentes ritmos
+5. **Aprendizaje autónomo:** Aplicar estrategias de memorización de forma independiente
+
+### Competencias Específicas por Grupo
+
+**Retardo mental leve o moderado:**
+- Retener y asociar elementos visuales simples
+- Seguir instrucciones de 2-3 pasos
+- Reconocer patrones visuales básicos
+
+**TEA (Trastorno del Espectro Autista):**
+- Seguir rutinas visuales y predecibles
+- Asociar imágenes con palabras de forma sistemática
+- Mantener atención en actividades estructuradas
+
+**Trastornos mixtos del aprendizaje:**
+- Combinar canales visuales y auditivos
+- Procesar información multisensorial
+- Responder positivamente a retroalimentación inmediata
+
+---
+
+## EVALUACIÓN INTEGRAL
+
+### Evaluación Diagnóstica
+
+**Método:** Observación inicial del nivel de retención y atención  
+**Instrumentos:** Actividades de la Semana 1 (Busca la pareja, Voltear fichas, Rueda aleatoria)  
+**Propósito:** Establecer línea base del nivel de memoria a corto plazo
+
+### Evaluación Formativa
+
+**Métodos:**
+- Rúbricas adaptadas por tipo de discapacidad
+- Registros visuales semanales
+- Autoevaluaciones con pictogramas
+- Observación de participación y motivación
+
+**Frecuencia:** Semanal, después de cada módulo
+
+### Evaluación Sumativa
+
+**Componentes:**
+- Desempeño en actividades Wordwall (porcentaje de aciertos)
+- Proyecto colaborativo final
+- Participación activa en sesiones
+- Progreso cognitivo individual (comparación diagnóstico vs. final)
+
+### Evaluación de Impacto Social y Emocional
+
+**Métodos:**
+- Entrevistas a estudiantes sobre confianza y autoestima
+- Entrevistas a familias sobre aplicación del aprendizaje en casa
+- Observación de interacciones sociales en el aula
+- Registro de actitudes hacia el aprendizaje
+
+### Sistema Gamificado
+
+**Puntos:**
+- Casilla completada: +10 puntos
+- Actividad Wordwall completada: +5 puntos
+- Quiz o reto superado: +15 puntos
+
+**Insignias (Badges):**
+- "Explorador Inicial" - Completar Semana 1
+- "Memoria Visual" - Completar Semanas 2-3
+- "Memoria Auditiva" - Completar Semanas 4-5
+- "Memoria Secuencial" - Completar Semana 6
+- "Memoria Asociativa" - Completar Semana 7
+- "Maestro de la Memoria" - Completar todas las semanas
+
+**Certificado Digital:**
+- Al finalizar la Semana 8, el jugador recibe un certificado digital descargable
+- Incluye nombre del jugador, fecha de completitud y logros alcanzados
+
+---
+
+## MARCO NORMATIVO
+
+### Decreto 1421 de 2017
+
+**Título:** "Por el cual se reglamenta en el marco de la educación inclusiva la atención educativa a la población con discapacidad."
+
+**Relevancia para el proyecto:**
+- Ajustes razonables en educación inclusiva
+- Plan Individual de Ajustes Razonables (PIAR)
+- Diseño Universal para el Aprendizaje (DUA)
+- Evaluación diferenciada
+
+### Ley 1618 de 2013
+
+**Título:** "Por medio de la cual se establecen las disposiciones para garantizar el pleno ejercicio de los derechos de las personas con discapacidad."
+
+**Relevancia para el proyecto:**
+- Derecho a la educación inclusiva con calidad
+- Eliminación de barreras actitudinales, pedagógicas y físicas
+- Formación docente en inclusión educativa
+
+### Diseño Universal para el Aprendizaje (DUA)
+
+**Principios aplicados:**
+- Múltiples medios de representación (visual, auditivo)
+- Múltiples medios de acción y expresión (diferentes formas de interactuar)
+- Múltiples medios de compromiso (motivación y participación)
+
+### Lineamientos del MEN
+
+**Temáticas:**
+- Estimulación cognitiva en educación inclusiva
+- Uso de TIC para apoyos pedagógicos
+- Recursos digitales accesibles
+
+---
+
+## CRONOGRAMA DE IMPLEMENTACIÓN
+
+| Semana | Fase | Módulo | Duración estimada | Actividades principales |
+|--------|------|---------|-------------------|-------------------------|
+| 1 | Exploración y diagnóstico | Familiarización | 3 sesiones de 20 minutos | Diagnóstico inicial, familiarización con Wordwall |
+| 2-3 | Desarrollo | Memoria visual | 3 sesiones de 25 minutos por semana | Reconocimiento visual, asociación imagen-palabra |
+| 4-5 | Desarrollo | Memoria auditiva | 3 sesiones de 25 minutos por semana | Retención auditiva, asociación sonido-imagen |
+| 6 | Desarrollo | Memoria secuencial | 3 sesiones de 25 minutos | Orden y secuencia de eventos |
+| 7 | Desarrollo | Memoria asociativa | 3 sesiones de 25 minutos | Relaciones conceptuales, categorización |
+| 8 | Consolidación | Evaluación y cierre | 4 sesiones de 30 minutos | Aplicación práctica, autoevaluación, certificado |
+
+**Duración total:** 8 semanas (24 horas de intervención directa)
+
+---
+
+## RESULTADOS ESPERADOS
+
+### Resultados Cognitivos
+
+- Mejora en la retención a corto plazo (medida mediante actividades de evaluación)
+- Aumento de la atención sostenida en actividades estructuradas
+- Mejora en la capacidad de asociación visual y auditiva
+
+### Resultados Socioemocionales
+
+- Aumento de la motivación hacia el aprendizaje
+- Mejora de la autoconfianza y autoestima
+- Reducción de la frustración ante dificultades de memoria
+
+### Resultados Sociales
+
+- Mejor convivencia e integración grupal
+- Mayor participación en actividades escolares
+- Mejora en las interacciones sociales
+
+### Resultados Institucionales
+
+- Modelo replicable para otros grados y contextos
+- Recursos accesibles y sostenibles (tecnología gratuita)
+- Evidencia de impacto positivo en aprendizaje inclusivo
+
+---
+
+## RECURSOS NECESARIOS
+
+### Recursos Tecnológicos
+
+- Portátil del docente
+- Televisor por aula (para proyección)
+- Conexión a internet (opcional, para actividades en línea)
+- Plataforma Wordwall (gratuita, con opción premium)
+- Navegador web actualizado (Chrome, Firefox, Edge)
+
+### Recursos Didácticos
+
+- Pictogramas para apoyo visual
+- Materiales visuales impresos
+- Recursos concretos para reforzar la memoria (objetos, tarjetas)
+- Rúbricas de evaluación adaptadas
+- Registros de progreso
+
+### Recursos Humanos
+
+- Docente titular (implementación de actividades)
+- Docente de apoyo (apoyo individualizado)
+- Participación de familias (seguimiento en casa)
+- Equipo de investigación (evaluación y registro)
+
+---
+
+## SOSTENIBILIDAD
+
+### Tecnología Gratuita y Accesible
+
+- Wordwall ofrece versión gratuita con funcionalidades básicas
+- No requiere software adicional costoso
+- Compatible con dispositivos básicos
+
+### Actividades Descargables
+
+- Las actividades Wordwall pueden descargarse para uso sin conexión
+- Materiales impresos como respaldo
+- Recursos reutilizables en diferentes contextos
+
+### Adaptabilidad
+
+- Modelo adaptable a diferentes grados escolares
+- Ajustable a diferentes tipos de discapacidad cognitiva
+- Modificable según recursos disponibles en cada contexto
+
+### Evidencia de Impacto
+
+- Registros de progreso individual y grupal
+- Evidencia de mejora en memoria a corto plazo
+- Testimonios de estudiantes y familias
+- Datos cuantitativos y cualitativos de evaluación
+
+---
+
+## ESTRUCTURA DE CODIFICACIÓN
+
+### Arquitectura Modular
+
+Siguiendo el patrón establecido en el portafolio (especialmente el módulo eBook), el juego se implementará como un módulo independiente:
+
+```
+assets/js/modules/board-game.js    # Módulo principal del juego (patrón similar a ebook.js)
+assets/js/data/board-game-data.js  # Datos de las 8 semanas (patrón similar a ebookData.js)
+assets/js/data/evaluation-data.js  # Datos de evaluación y competencias
+assets/css/components/board-game.css # Estilos del juego (patrón similar a ebook.css)
+```
+
+### Inicialización
+
+El módulo se inicializará desde `main.js`, siguiendo el mismo patrón que el eBook:
+
+```javascript
+// En assets/js/main.js, función init()
+function init() {
+    // ... otros módulos (navigation, scroll, modal, tabs, animations, carousel)
+    
+    // 9. eBook Module (existente)
+    if (typeof initEbook === 'function') {
+        initEbook();
+        console.log('✓ Módulo eBook inicializado');
+    }
+    
+    // 10. Board Game Module (NUEVO)
+    if (typeof initBoardGame === 'function') {
+        initBoardGame();
+        console.log('✓ Juego de mesa virtual inicializado');
+    }
+    
+    console.log('📦 Módulos cargados: Navigation, Scroll, Modal, Tabs, Animations, Carousel, eBook, BoardGame');
+}
+```
+
+**Nota:** La función `initBoardGame()` puede estar vacía o solo hacer console.log, ya que el juego se abre con `openBoardGame()` (similar a `openEbook()`)
+
+### Funciones Principales
+
+Siguiendo el patrón del eBook (`ebook.js`):
+
+**`initBoardGame()`** - Inicializa el módulo del juego (puede estar vacía, similar a `initEbook()`)  
+**`openBoardGame()`** - Abre el modal del juego (llamado desde HTML con `onclick="openBoardGame()"`, similar a `openEbook()`)  
+**`closeBoardGame()`** - Cierra el modal del juego (similar a `closeEbook()`)  
+**`createBoardGameModal()`** - Crea la estructura del modal completo (similar a `createEbookModal()`)  
+**`renderBoard()`** - Renderiza el tablero con las casillas  
+**`renderWeek(weekNumber)`** - Renderiza el contenido de una semana específica (similar a `renderChapter()`)  
+**`navigateWeek(direction)`** - Navega entre semanas (anterior/siguiente, similar a `navigateChapter()`)  
+**`goToWeek(weekNumber)`** - Va a una semana específica (similar a `goToChapter()`)  
+**`saveProgress()`** - Guarda el progreso en localStorage (similar a cómo el eBook guarda el capítulo actual)  
+**`loadProgress()`** - Carga el progreso desde localStorage  
+**`updateProgress()`** - Actualiza la barra de progreso visual  
+**`updateBadges()`** - Actualiza los badges obtenidos  
+**`generateCertificate()`** - Genera el certificado digital (similar a `downloadPDF()` del eBook)
+
+### Variables Globales
+
+Similar al eBook que usa `let currentChapter = 0;` y `let ebookModal = null;`:
+
+```javascript
+let currentWeek = 0;  // Semana actual (0-7, donde 0 es START)
+let boardGameModal = null;  // Referencia al modal del juego
+let boardGameData = null;  // Datos cargados desde board-game-data.js
+```
+
+### Estructura de Datos
+
+**`board-game-data.js`:**
+```javascript
+const boardGameData = {
+    weeks: [
+        {
+            number: 1,
+            title: "Diagnóstico y Familiarización",
+            objective: "...",
+            duration: "3 sesiones de 20 minutos",
+            contents: [...],
+            activities: [...],
+            resources: [...]
+        },
+        // ... semanas 2-8
+    ],
+    specialCells: {
+        competencies: {...},
+        evaluation: {...},
+        resources: {...},
+        infographic: {...},
+        achievements: {...},
+        certificate: {...}
+    }
+};
+```
+
+**`evaluation-data.js`:**
+```javascript
+const evaluationData = {
+    diagnostic: {...},
+    formative: {...},
+    summative: {...},
+    rubrics: {...},
+    badges: [...],
+    scoring: {...}
+};
+```
+
+### Integración con el Sistema de Modales
+
+**IMPORTANTE:** El juego NO utilizará el sistema de modales genérico (`modal.js`). En su lugar, creará su propio modal completo siguiendo el patrón del eBook:
+
+- **Modal propio:** Crear modal completo con `createBoardGameModal()` (similar a `createEbookModal()`)
+- **Estructura HTML:** Generar toda la estructura HTML del modal dinámicamente con JavaScript
+- **Estilos CSS:** Usar clases específicas del juego (`.board-game-modal`, `.board-game-container`, etc.)
+- **Z-index:** Usar `z-index: 9999` (igual que el eBook)
+- **Backdrop:** Fondo oscuro con blur (`background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);`)
+- **Navegación:** Botones de navegación integrados en el modal
+- **Persistencia:** Guardar progreso en localStorage al cerrar
+- **Navegación por teclado:** Soporte para Arrow keys, Tab, Enter, Escape (similar al eBook)
+
+### Variables CSS a Utilizar
+
+Seguir el patrón del eBook, usando variables de `assets/css/utils/variables.css`:
+
+```css
+/* Colores */
+--color-primary: #2E5BFF
+--color-primary-dark: #1E3FBF
+--color-secondary: #8C30F5
+--color-bg-primary: #FFFFFF
+--color-bg-secondary: #F8F9FA
+--color-text-primary: #2C3E50
+--color-text-secondary: #5A6C7D
+--color-gray-100 a --color-gray-900 (escala de grises)
+
+/* Espaciado */
+--spacing-xs, --spacing-sm, --spacing-md, --spacing-lg, --spacing-xl, --spacing-2xl, --spacing-3xl
+
+/* Tipografía */
+--font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+--font-heading: 'Poppins', 'Inter', sans-serif
+--font-size-base, --font-size-lg, --font-size-xl, --font-size-2xl, --font-size-3xl
+
+/* Transiciones */
+--transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+--transition-smooth: 600ms cubic-bezier(0.4, 0, 0.2, 1)
+--transition-micro: 100ms cubic-bezier(0.4, 0, 0.2, 1)
+
+/* Sombras */
+--shadow-md, --shadow-lg, --shadow-xl, --shadow-2xl
+
+/* Bordes */
+--border-radius-md, --border-radius-lg, --border-radius-xl
+
+/* Breakpoints (para media queries) */
+--breakpoint-sm: 640px
+--breakpoint-md: 768px
+--breakpoint-lg: 1024px
+```
+
+**Nota:** El z-index se define directamente en CSS (`z-index: 9999`), no se usa variable para esto.
+
+### Accesibilidad
+
+- Etiquetas ARIA para casillas y controles
+- Navegación por teclado (flechas, Tab, Enter, Escape)
+- Contraste de colores WCAG 2.1 AA
+- Textos alternativos para imágenes
+- Focus visible en elementos interactivos
+
+### Responsive Design
+
+- Diseño mobile-first
+- Breakpoints: `--breakpoint-sm`, `--breakpoint-md`, `--breakpoint-lg`
+- Tablero adaptativo (scroll horizontal en móvil, grid en desktop)
+- Modales responsivos
+
+### Persistencia de Datos
+
+**localStorage keys:**
+- `boardGame_progress` - Progreso del jugador (semanas completadas)
+- `boardGame_badges` - Badges obtenidos
+- `boardGame_points` - Puntos totales
+- `boardGame_lastVisit` - Última visita (para continuar desde donde se quedó)
+
+---
+
+## REFERENCIA PRINCIPAL
+
+**Documento base:**  
+"Referenciando - Actividad Didáctica"  
+Archivo: `C:\Users\USUARIO1\Documents\Diana Rocio\Portafolio\Referenciando - Actividad didactica.pdf`
+
+**Tesis de maestría:**  
+"Fortalecimiento de la memoria a corto plazo mediada por la secuencia didáctica como estrategia pedagógica, a través de la plataforma Wordwall en estudiantes de inclusión de grado quinto de la Ciudadela Educativa de Pasto, Sede Puerres."
+
+**Autora:** Diana Rocío Possos Beltrán  
+**Tutor:** Fredy Andrés Aponte Novoa  
+**Directora de Trabajo:** Erika Ardila Mantilla  
+**Universidad:** Universidad de Cartagena  
+**Programa:** Maestría en Recursos Digitales Aplicados a la Educación  
+**Año:** 2025
+
+---
+
+## NOTAS PARA EL DESARROLLADOR IA
+
+### Tareas Prioritarias
+
+1. **Leer y entender el PDF base:** `Referenciando - Actividad didactica.pdf`
+   - Extraer el contenido detallado de cada semana
+   - Identificar actividades específicas de Wordwall
+   - Revisar criterios de evaluación exactos
+   - Confirmar duraciones y recursos
+
+2. **Crear la estructura de datos:** `board-game-data.js`
+   - Organizar el contenido de las 8 semanas
+   - Estructurar las casillas especiales
+   - Incluir enlaces a recursos (si están disponibles)
+
+3. **Implementar el módulo principal:** `board-game.js`
+   - Sistema de modales adaptado para el tablero
+   - Navegación entre semanas
+   - Sistema de progreso y badges
+   - Integración con localStorage
+
+4. **Diseñar los estilos:** `board-game.css`
+   - Seguir el patrón de `ebook.css` como referencia
+   - Modal a pantalla completa con backdrop blur
+   - Tablero visual atractivo con casillas interactivas
+   - Animaciones de transición suaves (usar CSS transitions, no JavaScript)
+   - Diseño responsive (mobile-first)
+   - Header del modal con gradiente (similar al eBook)
+   - Barra de progreso visual
+   - Navegación inferior con botones
+
+5. **Integrar con el portafolio:**
+   - Reemplazar botón "Ver Unidad" por "Explorar como Juego de Mesa" en `index.html` (línea ~254)
+   - Agregar carga de `board-game-data.js` en `index.html` (antes de `board-game.js`)
+   - Agregar carga de `board-game.js` en `index.html` (después de `ebook.js`, antes de `main.js`)
+   - Agregar carga de `board-game.css` en `index.html` (después de `ebook.css`)
+   - Agregar inicialización en `main.js` (después de `initEbook()`)
+   - **NO** modificar el sistema de modales genérico (`modal.js`)
+
+### Consideraciones Técnicas
+
+- **No usar frameworks externos:** Solo HTML, CSS y JavaScript vanilla (ES6+)
+- **Seguir el patrón del eBook:** Usar `ebook.js` y `ebook.css` como referencia principal
+- **Modal propio:** Crear modal completo independiente, NO usar `modal.js`
+- **Iconos SVG:** Usar SVG inline para todos los iconos (como en el eBook), NO emojis
+- **Seguir la arquitectura modular:** Separar lógica (`board-game.js`), datos (`board-game-data.js`), y estilos (`board-game.css`)
+- **Usar variables CSS existentes:** Mantener consistencia visual con el resto del portafolio
+- **Optimizar performance:** Lazy loading de imágenes, animaciones con CSS (no JavaScript cuando sea posible)
+- **Garantizar accesibilidad:** Etiquetas ARIA, navegación por teclado (Arrow keys, Tab, Enter, Escape), contraste WCAG 2.1 AA
+- **Persistencia:** Usar `localStorage` para guardar progreso (similar a cómo el eBook podría guardar el capítulo actual)
+- **Responsive:** Diseño mobile-first con breakpoints existentes
+- **Z-index:** Usar `z-index: 9999` para el modal (igual que el eBook)
+
+### Próximos Pasos de Implementación
+
+1. **Leer y analizar el PDF:** `Referenciando - Actividad didactica.pdf`
+   - Extraer el contenido detallado de las 8 semanas
+   - Identificar actividades específicas de Wordwall
+   - Revisar criterios de evaluación exactos
+   - Confirmar duraciones, recursos y objetivos
+
+2. **Crear estructura de datos:** `board-game-data.js`
+   - Estructurar datos similar a `ebookData.js`
+   - Organizar el contenido de las 8 semanas en objetos
+   - Incluir casillas especiales (competencias, evaluación, recursos, etc.)
+   - Incluir enlaces a recursos Wordwall (si están disponibles)
+
+3. **Implementar módulo JavaScript:** `board-game.js`
+   - Seguir el patrón de `ebook.js` como referencia
+   - Crear función `openBoardGame()` (similar a `openEbook()`)
+   - Crear función `createBoardGameModal()` (similar a `createEbookModal()`)
+   - Implementar navegación entre semanas (similar a `navigateChapter()`)
+   - Implementar sistema de progreso y badges
+   - Integrar con localStorage para persistencia
+   - Agregar navegación por teclado (Arrow keys, Escape)
+
+4. **Diseñar estilos CSS:** `board-game.css`
+   - Seguir el patrón de `ebook.css` como referencia
+   - Crear estilos para modal a pantalla completa
+   - Diseñar tablero visual con casillas interactivas
+   - Implementar animaciones de transición (CSS)
+   - Diseño responsive (mobile-first)
+   - Header con gradiente, barra de progreso, navegación
+
+5. **Integrar con el portafolio:**
+   - Modificar `index.html`: Reemplazar botón "Ver Unidad" por "Explorar como Juego de Mesa"
+   - Agregar carga de scripts en `index.html` (data y module)
+   - Agregar carga de CSS en `index.html`
+   - Agregar inicialización en `main.js`
+
+6. **Probar y validar:**
+   - Probar la integración con el portafolio
+   - Validar accesibilidad (ARIA, teclado, contraste)
+   - Validar rendimiento (lazy loading, animaciones)
+   - Probar en diferentes navegadores (Chrome, Firefox, Edge)
+   - Probar responsive (móvil, tablet, desktop)
+
+7. **Documentar:**
+   - Comentar el código JavaScript
+   - Documentar funciones principales
+   - Actualizar `CLAUDE.md` con información del nuevo módulo
+
+---
+
+## REFERENCIA AL PATRÓN EBOOK
+
+El juego de mesa virtual debe seguir el patrón de implementación del módulo eBook como referencia principal:
+
+### Similitudes con el eBook
+
+1. **Modal propio:** Ambos crean su propio modal completo, no usan el sistema de modales genérico
+2. **Estructura HTML:** Ambos generan la estructura HTML del modal dinámicamente con JavaScript
+3. **Navegación:** Ambos tienen navegación entre secciones (capítulos vs. semanas)
+4. **Barra de progreso:** Ambos muestran progreso visual
+5. **Persistencia:** Ambos pueden guardar progreso en localStorage
+6. **Iconos SVG:** Ambos usan SVG inline para iconos
+7. **Estilos CSS:** Ambos tienen archivos CSS dedicados en `assets/css/components/`
+8. **Datos separados:** Ambos tienen archivos de datos en `assets/js/data/`
+
+### Archivos de Referencia
+
+- **JavaScript:** `assets/js/modules/ebook.js` - Patrón de modal, navegación, persistencia
+- **CSS:** `assets/css/components/ebook.css` - Estilos de modal, layout, responsive
+- **Datos:** `assets/js/data/ebookData.js` - Estructura de datos con capítulos
+- **HTML:** `index.html` líneas ~198-230 - Integración del botón y carga de scripts
+
+### Diferencias Clave
+
+1. **Contenido:** El juego muestra semanas y casillas del tablero, el eBook muestra capítulos
+2. **Interacción:** El juego tiene casillas clickeables en un tablero, el eBook tiene navegación lineal
+3. **Gamificación:** El juego incluye puntos, badges y certificados, el eBook es más informativo
+4. **Visualización:** El juego muestra un tablero visual, el eBook muestra contenido tipo libro
+
+---
+
+**Última actualización:** 2025  
+**Versión del documento:** 2.1  
+**Estado:** Listo para implementación  
+**Patrón de referencia:** Módulo eBook (`ebook.js`, `ebook.css`, `ebookData.js`)
