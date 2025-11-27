@@ -24,17 +24,24 @@
 }
 
 .maze__instructions {
-    background: var(--color-primary-light);
-    border: 2px solid var(--color-primary);
+    background: linear-gradient(
+        135deg,
+        rgba(13, 42, 78, 0.85) 0%,
+        rgba(17, 59, 110, 0.9) 50%,
+        rgba(13, 42, 78, 0.85) 100%
+    );
+    border: 2px solid rgba(13, 42, 78, 0.9);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .maze__instructions h4 {
-    color: var(--color-primary);
+    color: #ffffff;
     margin: 0 0 var(--spacing-md) 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .maze__instructions-list {
@@ -43,13 +50,15 @@
     margin: 0 auto var(--spacing-md);
     font-size: var(--font-size-base);
     line-height: 1.8;
+    color: #ffffff;
 }
 
 .maze__instructions-timer {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--color-primary);
+    color: #ffffff;
     margin: var(--spacing-md) 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .maze__container {

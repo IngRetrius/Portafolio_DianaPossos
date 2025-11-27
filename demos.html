@@ -18,6 +18,7 @@
     <!-- Demos CSS - Modular -->
     <link rel="stylesheet" href="assets/css/demos/demos-base.css">
     <link rel="stylesheet" href="assets/css/demos/demos-tabs.css">
+    <link rel="stylesheet" href="assets/css/demos/demos-responsive.css">
 
     <!-- Activities CSS -->
     <link rel="stylesheet" href="assets/css/demos/activities/shared-activities.css">
@@ -66,7 +67,7 @@
                             <a href="#modulo-5" class="nav__link" data-module="modulo-5">Módulo 5</a>
                         </li>
                         <li class="nav__item">
-                            <a href="index.html#productos" class="nav__link nav__link--back">← Volver</a>
+                            <a href="index.html#disenando" class="nav__link nav__link--back" onclick="localStorage.setItem('activeTab', 'producto')">← Volver</a>
                         </li>
                     </ul>
                 </nav>
@@ -78,8 +79,10 @@
     <section class="hero-demos">
         <div class="container">
             <div class="hero-demos__content">
-                <h1 class="hero-demos__title">Demos Interactivas - Proyecto Wordwall</h1>
-                <p class="hero-demos__subtitle">Fortalecimiento de Memoria a Corto Plazo en Estudiantes con Discapacidad Cognitiva</p>
+                <div class="hero-demos__text-container">
+                    <h1 class="hero-demos__title">Demos Interactivas - Proyecto Wordwall</h1>
+                    <p class="hero-demos__subtitle">Fortalecimiento de Memoria a Corto Plazo en Estudiantes con Discapacidad Cognitiva</p>
+                </div>
                 <div class="demo-progress">
                     <span class="demo-progress__text">Progreso: <strong id="progressCount">0/12</strong> actividades completadas</span>
                     <div class="demo-progress__bar">

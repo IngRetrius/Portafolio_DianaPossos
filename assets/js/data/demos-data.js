@@ -130,37 +130,37 @@ export const DEMOS_CONFIG = {
                         {
                             id: 1,
                             audio: 'assets/audio/palabra-faltante/oracion-01.mp3',
-                            sentence: 'El niño juega con la ___',
-                            answer: 'pelota',
-                            alternatives: ['pelota', 'bola']
+                            sentence: 'El perro ladra en el ___',
+                            answer: 'patio',
+                            alternatives: ['patio']
                         },
                         {
                             id: 2,
                             audio: 'assets/audio/palabra-faltante/oracion-02.mp3',
-                            sentence: 'La vaca come ___',
-                            answer: 'pasto',
-                            alternatives: ['pasto', 'hierba']
+                            sentence: 'La vaca come hierba ___',
+                            answer: 'fresca',
+                            alternatives: ['fresca']
                         },
                         {
                             id: 3,
                             audio: 'assets/audio/palabra-faltante/oracion-03.mp3',
-                            sentence: 'El río está ___',
-                            answer: 'cerca',
-                            alternatives: ['cerca', 'próximo']
+                            sentence: 'Los niños juegan en el ___',
+                            answer: 'parque',
+                            alternatives: ['parque']
                         },
                         {
                             id: 4,
                             audio: 'assets/audio/palabra-faltante/oracion-04.mp3',
-                            sentence: 'Los pájaros ___ en el árbol',
-                            answer: 'cantan',
-                            alternatives: ['cantan', 'trinan']
+                            sentence: 'El río corre por la ___',
+                            answer: 'montaña',
+                            alternatives: ['montaña', 'montana']
                         },
                         {
                             id: 5,
                             audio: 'assets/audio/palabra-faltante/oracion-05.mp3',
-                            sentence: 'La maestra ___ en el tablero',
-                            answer: 'escribe',
-                            alternatives: ['escribe', 'dibuja']
+                            sentence: 'Las flores crecen en el ___',
+                            answer: 'jardín',
+                            alternatives: ['jardín', 'jardin']
                         }
                     ],
                     settings: {

@@ -59,11 +59,13 @@ export class FillInBlank extends AudioActivity {
                 ${this.renderAudioControls(audioId, 'Escuchar oración')}
                 <p class="fill-blank__sentence">${question.sentence}</p>
                 <div class="fill-blank__input-group">
-                    <input type="text"
-                           class="fill-blank__input"
-                           placeholder="Escribe la palabra faltante"
-                           autocomplete="off"
-                           data-question="${this.currentQuestion}">
+                    <div class="fill-blank__input-wrapper">
+                        <input type="text"
+                               class="fill-blank__input"
+                               placeholder="Escribe la palabra faltante"
+                               autocomplete="off"
+                               data-question="${this.currentQuestion}">
+                    </div>
                     <button class="btn btn--primary fill-blank__check"
                             data-action="check">
                         Verificar
@@ -115,6 +117,11 @@ export class FillInBlank extends AudioActivity {
         const feedbackDiv = this.container.querySelector('.fill-blank__feedback');
         const question = this.questions[this.currentQuestion];
 
+        console.log('CheckAnswer llamado');
+        console.log('Input:', input);
+        console.log('FeedbackDiv:', feedbackDiv);
+        console.log('Question:', question);
+
         if (!input || !input.value.trim()) {
             feedbackDiv.innerHTML = '<p class="feedback feedback--error">Por favor escribe una respuesta</p>';
             return;
@@ -123,11 +130,21 @@ export class FillInBlank extends AudioActivity {
         const userAnswer = input.value.trim();
         const caseSensitive = this.config.settings?.caseSensitive || false;
 
+        console.log('User answer:', userAnswer);
+        console.log('Expected answer:', question.answer);
+        console.log('Alternatives:', question.alternatives);
+
         // Verificar contra respuesta principal y alternativas
         const allAnswers = [question.answer, ...(question.alternatives || [])];
-        const isCorrect = allAnswers.some(answer =>
-            compareStrings(userAnswer, answer, caseSensitive)
-        );
+        console.log('All answers:', allAnswers);
+
+        const isCorrect = allAnswers.some(answer => {
+            const result = compareStrings(userAnswer, answer, caseSensitive);
+            console.log(`Comparing "${userAnswer}" with "${answer}": ${result}`);
+            return result;
+        });
+
+        console.log('Is correct:', isCorrect);
 
         if (isCorrect) {
             this.correctAnswers++;
@@ -135,24 +152,20 @@ export class FillInBlank extends AudioActivity {
 
             setTimeout(() => {
                 this.currentQuestion++;
-                if (this.currentQuestion >= this.questions.length) {
-                    this.complete();
-                } else {
-                    this.render();
-                }
+                this.complete();
+                this.render();
             }, 1500);
         } else {
-            if (this.config.settings?.allowRetries !== false) {
-                feedbackDiv.innerHTML = `<p class="feedback feedback--error">Incorrecto. Intenta de nuevo</p>`;
-                input.value = '';
-                input.focus();
-            } else {
-                feedbackDiv.innerHTML = `<p class="feedback feedback--error">Incorrecto. La respuesta era: ${question.answer}</p>`;
-                setTimeout(() => {
-                    this.currentQuestion++;
-                    this.render();
-                }, 2000);
-            }
+            console.log('Mostrando mensaje de error');
+            feedbackDiv.innerHTML = `<p class="feedback feedback--error">✗ Incorrecto. La respuesta correcta es: <strong>${question.answer}</strong></p>`;
+            console.log('HTML asignado:', feedbackDiv.innerHTML);
+            input.disabled = true;
+
+            setTimeout(() => {
+                this.currentQuestion++;
+                this.complete();
+                this.render();
+            }, 2500);
         }
     }
 

@@ -56,8 +56,17 @@ function initTabs() {
     
     // Navegación con hash URL (opcional)
     function checkHashOnLoad() {
+        // Verificar si hay un tab guardado en localStorage
+        const savedTab = localStorage.getItem('activeTab');
+        if (savedTab) {
+            // Limpiar el localStorage después de usarlo
+            localStorage.removeItem('activeTab');
+            switchTab(savedTab);
+            return;
+        }
+
         const hash = window.location.hash.substring(1); // Quitar el #
-        
+
         // Verificar si el hash corresponde a un tab
         const hashTab = document.getElementById(hash);
         if (hashTab && hashTab.classList.contains('tab__panel')) {

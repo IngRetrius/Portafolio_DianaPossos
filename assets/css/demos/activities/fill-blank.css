@@ -33,21 +33,64 @@
 
 .fill-blank__input-group {
     display: flex;
-    gap: var(--spacing-sm);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
     margin: var(--spacing-lg) 0;
 }
 
+.fill-blank__input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
 .fill-blank__input {
-    flex: 1;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 2px solid var(--color-border);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-base);
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: 3px solid var(--color-primary);
+    border-radius: 50px;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 4px 12px rgba(13, 42, 78, 0.15);
+    transition: all var(--transition-base);
+}
+
+.fill-blank__input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+    font-style: italic;
 }
 
 .fill-blank__input:focus {
     outline: none;
     border-color: var(--color-primary);
+    border-width: 4px;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 6px 20px rgba(13, 42, 78, 0.25),
+        0 0 0 4px rgba(13, 42, 78, 0.1);
+    transform: scale(1.02);
+}
+
+.fill-blank__input:hover:not(:focus) {
+    border-color: rgba(13, 42, 78, 0.7);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 6px 16px rgba(13, 42, 78, 0.2);
+}
+
+.fill-blank__input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f0f0f0;
+    border-color: #ccc;
 }
 
 .fill-blank__feedback {
@@ -80,4 +123,46 @@
 .feedback--error {
     background-color: var(--color-error);
     color: white;
+}
+
+.feedback--error strong {
+    font-weight: 700;
+    text-decoration: underline;
+    font-size: 1.1em;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .fill-blank__sentence {
+        font-size: var(--font-size-base);
+    }
+
+    .fill-blank__input {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .fill-blank__input-wrapper {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fill-blank__sentence {
+        font-size: var(--font-size-sm);
+    }
+
+    .fill-blank__input {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .fill-blank__input-wrapper {
+        max-width: 280px;
+    }
+
+    .fill-blank__input:focus {
+        border-width: 3px;
+        transform: scale(1.01);
+    }
 }

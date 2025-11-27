@@ -76,7 +76,8 @@
 }
 
 .demo-panel__header {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    padding-top: var(--spacing-md);
 }
 
 .demo-panel__title {

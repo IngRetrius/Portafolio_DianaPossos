@@ -1,0 +1,481 @@
+/**
+ * DEMOS-RESPONSIVE.CSS
+ * Sistema responsive modular para la página de demos
+ * Breakpoints: 1200px (desktop), 992px (tablet landscape), 768px (tablet), 576px (mobile large), 480px (mobile), 360px (mobile small)
+ */
+
+/* ========================================
+   VARIABLES DE BREAKPOINTS
+   ======================================== */
+/*
+  --breakpoint-xl: 1200px (Desktop large)
+  --breakpoint-lg: 992px  (Desktop / Tablet landscape)
+  --breakpoint-md: 768px  (Tablet portrait)
+  --breakpoint-sm: 576px  (Mobile large)
+  --breakpoint-xs: 480px  (Mobile)
+  --breakpoint-xxs: 360px (Mobile small)
+*/
+
+/* ========================================
+   DESKTOP LARGE (1200px - 1440px+)
+   ======================================== */
+@media (min-width: 1200px) {
+    .demo-container {
+        max-width: 1400px;
+        padding: 0 var(--spacing-xl);
+    }
+
+    .hero-demos__content {
+        max-width: 900px;
+    }
+
+    .hero-demos__title {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+    }
+
+    .demo-panel__header {
+        padding-top: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .demo-activity-card {
+        padding: var(--spacing-xl);
+    }
+}
+
+/* ========================================
+   DESKTOP / TABLET LANDSCAPE (992px - 1199px)
+   ======================================== */
+@media (max-width: 1199px) {
+    .demo-container {
+        max-width: 1140px;
+        padding: 0 var(--spacing-lg);
+    }
+
+    .hero-demos__content {
+        max-width: 850px;
+    }
+
+    .hero-demos__title {
+        font-size: clamp(2rem, 3.5vw, 3rem);
+    }
+
+    .demo-panel__activities {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* ========================================
+   TABLET LANDSCAPE (992px)
+   ======================================== */
+@media (max-width: 992px) {
+    .hero-demos {
+        padding: calc(80px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    .hero-demos__title {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-md);
+    }
+
+    .demo-container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Header navigation adjustments */
+    .nav__list {
+        gap: var(--spacing-sm);
+    }
+
+    .nav__link {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}
+
+/* ========================================
+   TABLET PORTRAIT (768px - 991px)
+   ======================================== */
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero-demos {
+        padding: calc(70px + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
+        background-position: center center;
+        background-attachment: scroll;
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    /* Progress Bar */
+    .demo-progress {
+        padding: var(--spacing-md);
+    }
+
+    .demo-progress__text {
+        font-size: var(--font-size-sm);
+    }
+
+    .demo-progress__bar {
+        height: 10px;
+    }
+
+    /* Main Content */
+    .demo-main {
+        padding: var(--spacing-md) 0;
+    }
+
+    .demo-container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Demo Panels */
+    .demo-panel__header {
+        padding-top: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .demo-panel__title {
+        font-size: var(--font-size-xl);
+    }
+
+    .demo-panel__description {
+        font-size: var(--font-size-sm);
+    }
+
+    /* Activity Cards */
+    .demo-activity-card {
+        padding: var(--spacing-md);
+    }
+
+    .demo-activity-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .demo-activity-card__title {
+        font-size: var(--font-size-md);
+    }
+
+    /* Footer */
+    .demo-footer {
+        padding: var(--spacing-md) 0;
+    }
+
+    .demo-footer__text {
+        font-size: var(--font-size-xs);
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* ========================================
+   MOBILE LARGE (576px - 767px)
+   ======================================== */
+@media (max-width: 576px) {
+    /* Hero adjustments */
+    .hero-demos {
+        padding: calc(60px + var(--spacing-md)) var(--spacing-sm) var(--spacing-md);
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-md);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-xl);
+        line-height: 1.3;
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-sm);
+        line-height: 1.4;
+    }
+
+    /* Progress Bar */
+    .demo-progress {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .demo-progress__text {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .demo-progress__bar {
+        height: 8px;
+    }
+
+    /* Container */
+    .demo-container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    /* Activity Cards */
+    .demo-activity-card {
+        padding: var(--spacing-sm);
+    }
+
+    .demo-panel__activities {
+        gap: var(--spacing-md);
+    }
+}
+
+/* ========================================
+   MOBILE (480px)
+   ======================================== */
+@media (max-width: 480px) {
+    /* Hero Section */
+    .hero-demos {
+        padding: calc(60px + var(--spacing-sm)) var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--border-radius);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--spacing-xs);
+        word-break: break-word;
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-xs);
+        line-height: 1.5;
+    }
+
+    /* Progress Bar Compact */
+    .demo-progress {
+        padding: var(--spacing-sm);
+    }
+
+    .demo-progress__text {
+        font-size: 0.75rem;
+    }
+
+    .demo-progress__bar {
+        height: 6px;
+    }
+
+    /* Demo Panels */
+    .demo-panel__header {
+        padding-top: 0;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .demo-panel__title {
+        font-size: var(--font-size-lg);
+    }
+
+    .demo-panel__description {
+        font-size: var(--font-size-xs);
+    }
+
+    /* Activity Cards Compact */
+    .demo-activity-card {
+        padding: var(--spacing-sm);
+        border-radius: var(--border-radius);
+    }
+
+    .demo-activity-card__title {
+        font-size: var(--font-size-sm);
+    }
+
+    .demo-activity-card__status {
+        font-size: var(--font-size-xs);
+        padding: 4px 8px;
+    }
+
+    /* Footer */
+    .demo-footer__text {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+
+    /* Navigation compact */
+    .header__logo-img {
+        max-height: 40px;
+    }
+}
+
+/* ========================================
+   MOBILE SMALL (360px)
+   ======================================== */
+@media (max-width: 360px) {
+    /* Extra compact for very small devices */
+    .hero-demos {
+        padding: calc(50px + var(--spacing-xs)) var(--spacing-xs) var(--spacing-xs);
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-base);
+        line-height: 1.4;
+    }
+
+    .hero-demos__subtitle {
+        font-size: 0.7rem;
+    }
+
+    .demo-progress {
+        padding: var(--spacing-xs);
+    }
+
+    .demo-progress__text {
+        font-size: 0.7rem;
+    }
+
+    .demo-container {
+        padding: 0 var(--spacing-xs);
+    }
+
+    .demo-panel__header {
+        padding-top: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .demo-panel__title {
+        font-size: var(--font-size-base);
+    }
+
+    .demo-activity-card {
+        padding: var(--spacing-xs);
+    }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION (MOBILE)
+   ======================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-demos {
+        padding: calc(60px + var(--spacing-sm)) var(--spacing-md) var(--spacing-sm);
+    }
+
+    .hero-demos__text-container {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-sm);
+    }
+
+    .demo-progress {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* ========================================
+   HIGH RESOLUTION DISPLAYS (RETINA)
+   ======================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Optimize image quality */
+    .hero-demos {
+        background-size: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+
+    /* Sharper borders on glassmorphism */
+    .hero-demos__text-container,
+    .demo-progress {
+        border-width: 0.5px;
+    }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+    .hero-demos {
+        background: white !important;
+        color: black !important;
+        padding: var(--spacing-md) !important;
+    }
+
+    .hero-demos::before {
+        display: none !important;
+    }
+
+    .hero-demos__text-container {
+        background: white !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .hero-demos__title,
+    .hero-demos__subtitle,
+    .demo-progress__text {
+        color: black !important;
+    }
+
+    .demo-progress__bar {
+        border: 1px solid #ccc;
+    }
+
+    .header,
+    .demo-footer,
+    .nav__link--back {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   REDUCED MOTION (ACCESSIBILITY)
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hero-demos__text-container,
+    .demo-progress,
+    .demo-activity-card {
+        transition: none !important;
+    }
+}
+
+/* ========================================
+   DARK MODE SUPPORT (OPTIONAL)
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+    /* Already optimized for dark with overlay */
+    .hero-demos::before {
+        background: linear-gradient(
+            135deg,
+            rgba(10, 30, 60, 0.9) 0%,
+            rgba(15, 45, 90, 0.95) 50%,
+            rgba(10, 30, 60, 0.9) 100%
+        );
+    }
+}

@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 Always update claude.md after every commit.
 
-**Última actualización:** Implementación del módulo de Diseño Instruccional (Modelo ADDIE)
+**Última actualización:** Sistema Responsive Modular para demos.html
 ## Project Overview
 
 This is an academic portfolio website for Diana Rocío Possos Beltrán's Master's thesis in Digital Resources Applied to Education at Universidad de Cartagena. The site showcases research on strengthening short-term memory in students with cognitive disabilities using Wordwall and gamification strategies.
@@ -55,19 +55,53 @@ assets/css/
 │   ├── variables.css    # CSS custom properties (colors, spacing, fonts)
 │   ├── reset.css        # CSS reset/normalization
 │   └── animations.css   # Reusable animations (@keyframes)
-└── components/          # UI components (one file per section)
-    ├── header.css       # Navigation bar
-    ├── hero.css         # Hero section
-    ├── about.css        # About section
-    ├── products.css     # Academic products section
-    ├── project.css      # Thesis project section
-    ├── carousel.css     # Carousel styles
-    ├── credits.css      # Credits/references section
-    ├── contact.css      # Contact section
-    └── footer.css       # Footer
+├── components/          # UI components (one file per section)
+│   ├── header.css       # Navigation bar
+│   ├── hero.css         # Hero section
+│   ├── about.css        # About section
+│   ├── products.css     # Academic products section
+│   ├── project.css      # Thesis project section
+│   ├── carousel.css     # Carousel styles
+│   ├── credits.css      # Credits/references section
+│   ├── contact.css      # Contact section
+│   └── footer.css       # Footer
+└── demos/               # Demos page specific styles (demos.html)
+    ├── demos-base.css   # Base styles (hero, progress, footer)
+    ├── demos-tabs.css   # Tab/module navigation system
+    ├── demos-responsive.css  # ✨ Modular responsive system (6 breakpoints)
+    ├── RESPONSIVE-GUIDE.md   # Documentation for responsive system
+    └── activities/      # Individual activity styles
 ```
 
-**Load order matters:** Variables → Reset → Animations → Main → Components (as shown in `index.html` lines 12-27)
+**Load order matters:** Variables → Reset → Animations → Main → Components → Demos Base → Demos Responsive (as shown in `demos.html` lines 12-21)
+
+### Demos Page Responsive System
+
+The `demos.html` page uses a modular responsive CSS architecture in `assets/css/demos/demos-responsive.css`:
+
+**6 Breakpoints:**
+- **XL (1200px+)**: Desktop Large - Maximum spacing and content width
+- **LG (992px-1199px)**: Desktop/Tablet Landscape - Optimized content
+- **MD (768px-991px)**: Tablet Portrait - Compact navigation
+- **SM (576px-767px)**: Mobile Large - Simplified layout
+- **XS (480px-575px)**: Mobile - Compact interface
+- **XXS (360px-479px)**: Mobile Small - Ultra compact
+
+**Special Features:**
+- Landscape orientation support for mobile devices
+- Retina display optimization (high DPI)
+- Print styles (removes backgrounds, converts to B&W)
+- Reduced motion support (accessibility)
+- Dark mode optimization
+- Glassmorphism adjustments per breakpoint
+
+**Key Components:**
+- Hero section with background image and glassmorphism
+- Progress bar with adaptive sizing
+- Activity cards with flexible layouts
+- Container with responsive max-widths
+
+See `assets/css/demos/RESPONSIVE-GUIDE.md` for complete documentation.
 
 ### Content Sections
 

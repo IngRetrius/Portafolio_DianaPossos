@@ -6,16 +6,52 @@
 
 /* ========== HERO DEMOS ========== */
 .hero-demos {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    position: relative;
+    background-image: url('../../images/galeria/1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: calc(90px + var(--spacing-2xl)) 0 var(--spacing-2xl) 0;
     margin-top: 0;
+    overflow: hidden;
+}
+
+/* Overlay oscuro con gradiente */
+.hero-demos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(13, 42, 78, 0.85) 0%,
+        rgba(17, 59, 110, 0.9) 50%,
+        rgba(13, 42, 78, 0.85) 100%
+    );
+    z-index: 1;
 }
 
 .hero-demos__content {
+    position: relative;
+    z-index: 2;
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+}
+
+/* Contenedor único para título y subtítulo */
+.hero-demos__text-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    margin-bottom: var(--spacing-xl);
 }
 
 .hero-demos__title {
@@ -23,24 +59,29 @@
     font-weight: var(--font-weight-bold);
     margin: 0 0 var(--spacing-md) 0;
     line-height: 1.2;
+    color: #ffffff;
 }
 
 .hero-demos__subtitle {
     font-size: var(--font-size-lg);
-    opacity: 0.95;
-    margin: 0 0 var(--spacing-xl) 0;
+    margin: 0;
     line-height: 1.5;
+    color: #ffffff;
 }
 
 /* ========== PROGRESS BAR ========== */
 .demo-progress {
+    position: relative;
+    z-index: 2;
     max-width: 500px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .demo-progress__text {
@@ -48,6 +89,7 @@
     font-size: var(--font-size-base);
     margin-bottom: var(--spacing-md);
     text-align: center;
+    color: #ffffff;
 }
 
 .demo-progress__bar {
@@ -70,7 +112,7 @@
 /* ========== MAIN CONTAINER ========== */
 .demo-main {
     min-height: calc(100vh - 200px);
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
 }
 
 .demo-container {
@@ -106,24 +148,4 @@
 }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .hero-demos {
-        padding: calc(70px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
-    }
-
-    .hero-demos__title {
-        font-size: var(--font-size-2xl);
-    }
-
-    .hero-demos__subtitle {
-        font-size: var(--font-size-base);
-    }
-
-    .demo-progress {
-        padding: var(--spacing-md);
-    }
-
-    .demo-progress__text {
-        font-size: var(--font-size-sm);
-    }
-}
+/* Los estilos responsive se han modularizado en demos-responsive.css */
