@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Demos Interactivas - Proyecto Wordwall para Fortalecimiento de Memoria a Corto Plazo">
+    <meta name="keywords" content="wordwall, memoria, actividades interactivas, educación inclusiva">
+    <meta name="author" content="Diana Rocío Possos Beltrán">
+    <title>Demos Interactivas | Proyecto Wordwall</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/utils/variables.css">
+    <link rel="stylesheet" href="assets/css/utils/reset.css">
+    <link rel="stylesheet" href="assets/css/utils/animations.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/header.css">
+
+    <!-- Demos CSS - Modular -->
+    <link rel="stylesheet" href="assets/css/demos/demos-base.css">
+    <link rel="stylesheet" href="assets/css/demos/demos-tabs.css">
+
+    <!-- Activities CSS -->
+    <link rel="stylesheet" href="assets/css/demos/activities/shared-activities.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/memory-game.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/flashcards.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/reveal-boxes.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/fill-blank.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/sound-match.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/drag-order.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/maze.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/categorize.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/mixed-game.css">
+    <link rel="stylesheet" href="assets/css/demos/activities/certificate.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="assets/images/logo-unicartagena.png" alt="Universidad de Cartagena" class="header__logo-img">
+                </div>
+                <nav class="nav" id="nav">
+                    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav__list" id="navList">
+                        <li class="nav__item">
+                            <a href="#modulo-0" class="nav__link" data-module="modulo-0">Módulo 0</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#modulo-1" class="nav__link" data-module="modulo-1">Módulo 1</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#modulo-2" class="nav__link" data-module="modulo-2">Módulo 2</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#modulo-3" class="nav__link" data-module="modulo-3">Módulo 3</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#modulo-4" class="nav__link" data-module="modulo-4">Módulo 4</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#modulo-5" class="nav__link" data-module="modulo-5">Módulo 5</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="index.html#productos" class="nav__link nav__link--back">← Volver</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO DEMOS -->
+    <section class="hero-demos">
+        <div class="container">
+            <div class="hero-demos__content">
+                <h1 class="hero-demos__title">Demos Interactivas - Proyecto Wordwall</h1>
+                <p class="hero-demos__subtitle">Fortalecimiento de Memoria a Corto Plazo en Estudiantes con Discapacidad Cognitiva</p>
+                <div class="demo-progress">
+                    <span class="demo-progress__text">Progreso: <strong id="progressCount">0/12</strong> actividades completadas</span>
+                    <div class="demo-progress__bar">
+                        <div class="demo-progress__fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="demo-main">
+        <div class="demo-container">
+
+            <!-- TAB PANELS -->
+            <div class="demo-panels">
+                <!-- MÓDULO 0: DIAGNÓSTICO -->
+                <section class="demo-panel active"
+                         role="tabpanel"
+                         id="panel-modulo-0"
+                         aria-labelledby="tab-modulo-0">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 0: Diagnóstico</h2>
+                        <p class="demo-panel__description">
+                            Evaluación inicial de habilidades de memoria a corto plazo mediante
+                            actividades básicas de reconocimiento y asociación.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Memory Game -->
+                        <div class="demo-activity-card" data-activity="m0-memory-objetos">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Memory Game - Objetos del Aula</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m0-memory-objetos">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Flashcards -->
+                        <div class="demo-activity-card" data-activity="m0-flashcards-animales">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Flashcards - Animales</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m0-flashcards-animales">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 1: MEMORIA VISUAL -->
+                <section class="demo-panel"
+                         role="tabpanel"
+                         id="panel-modulo-1"
+                         aria-labelledby="tab-modulo-1">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 1: Memoria Visual</h2>
+                        <p class="demo-panel__description">
+                            Fortalecimiento de la capacidad de retención visual mediante ejercicios
+                            de revelación y memorización de elementos.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Reveal Boxes -->
+                        <div class="demo-activity-card" data-activity="m1-reveal-rurales">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Reveal Boxes - Elementos Rurales</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m1-reveal-rurales">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Memory Game Avanzado -->
+                        <div class="demo-activity-card" data-activity="m1-memory-categorias">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Memory Game - Categorías Mixtas</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m1-memory-categorias">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 2: MEMORIA AUDITIVA -->
+                <section class="demo-panel"
+                         role="tabpanel"
+                         id="panel-modulo-2"
+                         aria-labelledby="tab-modulo-2">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 2: Memoria Auditiva</h2>
+                        <p class="demo-panel__description">
+                            Desarrollo de la memoria auditiva a través del reconocimiento de sonidos
+                            y completación de oraciones escuchadas.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Fill in the Blank -->
+                        <div class="demo-activity-card" data-activity="m2-fill-blank">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Completa la Oración (Audio)</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m2-fill-blank">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Sound Match -->
+                        <div class="demo-activity-card" data-activity="m2-sound-match">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Empareja Sonidos del Entorno</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m2-sound-match">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 3: MEMORIA SECUENCIAL -->
+                <section class="demo-panel"
+                         role="tabpanel"
+                         id="panel-modulo-3"
+                         aria-labelledby="tab-modulo-3">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 3: Memoria Secuencial</h2>
+                        <p class="demo-panel__description">
+                            Refuerzo de la memoria secuencial mediante ejercicios de ordenamiento
+                            y navegación siguiendo instrucciones.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Drag & Drop Order -->
+                        <div class="demo-activity-card" data-activity="m3-drag-order">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Ordena las Rutinas Escolares</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m3-drag-order">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Maze -->
+                        <div class="demo-activity-card" data-activity="m3-maze">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Laberinto con Instrucciones</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m3-maze">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 4: MEMORIA ASOCIATIVA -->
+                <section class="demo-panel"
+                         role="tabpanel"
+                         id="panel-modulo-4"
+                         aria-labelledby="tab-modulo-4">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 4: Memoria Asociativa</h2>
+                        <p class="demo-panel__description">
+                            Fortalecimiento de la memoria asociativa mediante clasificación por
+                            categorías y relación de conceptos.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Categorize -->
+                        <div class="demo-activity-card" data-activity="m4-categorize">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Clasifica por Categorías</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m4-categorize">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Memory Conceptos -->
+                        <div class="demo-activity-card" data-activity="m4-memory-conceptos">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Memory Game - Conceptos Relacionados</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m4-memory-conceptos">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MÓDULO 5: CONSOLIDACIÓN -->
+                <section class="demo-panel"
+                         role="tabpanel"
+                         id="panel-modulo-5"
+                         aria-labelledby="tab-modulo-5">
+                    <div class="demo-panel__header">
+                        <h2 class="demo-panel__title">Módulo 5: Consolidación</h2>
+                        <p class="demo-panel__description">
+                            Integración de todas las habilidades trabajadas y certificación del
+                            proceso de aprendizaje completado.
+                        </p>
+                    </div>
+                    <div class="demo-panel__activities">
+                        <!-- Actividad 1: Mixed Game -->
+                        <div class="demo-activity-card" data-activity="m5-mixed">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Juego Mixto - Desafío Final</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m5-mixed">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Actividad 2: Certificate -->
+                        <div class="demo-activity-card" data-activity="m5-certificate">
+                            <div class="demo-activity-card__header">
+                                <h3 class="demo-activity-card__title">Certificado de Logro</h3>
+                                <span class="demo-activity-card__status" data-status="pending">Pendiente</span>
+                            </div>
+                            <div class="demo-activity-card__content" id="activity-m5-certificate">
+                                <!-- Contenido generado dinámicamente por JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="demo-footer">
+        <div class="demo-footer__container">
+            <p class="demo-footer__text">
+                Proyecto Wordwall - Fortalecimiento de Memoria a Corto Plazo |
+                Diana Rocío Possos Beltrán - Universidad de Cartagena
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="assets/js/data/demos-data.js"></script>
+    <script type="module" src="assets/js/utils/helpers.js"></script>
+    <script type="module" src="assets/js/utils/image-placeholders.js"></script>
+    <script type="module" src="assets/js/modules/demo-progress.js"></script>
+    <script type="module" src="assets/js/modules/activities-init.js"></script>
+    <script type="module" src="assets/js/modules/activity-loader.js"></script>
+    <script type="module" src="assets/js/modules/demos.js"></script>
+</body>
+</html>

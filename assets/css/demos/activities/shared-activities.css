@@ -1,0 +1,123 @@
+/**
+ * SHARED-ACTIVITIES.CSS
+ * Estilos compartidos entre todas las actividades
+ * Incluye: feedback, audio controls, drag & drop
+ */
+
+/* ========== ACTIVITY FEEDBACK ========== */
+.activity-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-2xl);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    min-width: 300px;
+    animation: feedbackSlideIn 0.3s ease;
+}
+
+.activity-feedback--fade-out {
+    animation: feedbackSlideOut 0.3s ease forwards;
+}
+
+.activity-feedback__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.activity-feedback--success .activity-feedback__icon {
+    background-color: var(--color-success);
+}
+
+.activity-feedback--error .activity-feedback__icon {
+    background-color: var(--color-error);
+}
+
+.activity-feedback__message {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+/* ========== AUDIO CONTROLS ========== */
+.audio-controls {
+    display: inline-flex;
+    margin: var(--spacing-sm) 0;
+}
+
+.audio-controls__btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.audio-controls__icon {
+    font-size: var(--font-size-lg);
+}
+
+/* ========== DRAG & DROP ========== */
+[draggable="true"] {
+    cursor: move;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+[draggable="true"].is-dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.drag-item {
+    transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.drag-item:hover {
+    transform: translateY(-2px);
+}
+
+.drop-zone {
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.drop-zone.is-over {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes feedbackSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes feedbackSlideOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}

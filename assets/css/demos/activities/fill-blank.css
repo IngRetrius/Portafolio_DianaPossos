@@ -1,0 +1,83 @@
+/**
+ * FILL-BLANK.CSS
+ * Estilos para la actividad Fill in the Blank
+ */
+
+/* ========== FILL IN THE BLANK ========== */
+.fill-blank__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-background-alt);
+    border-radius: var(--border-radius);
+}
+
+.fill-blank__progress,
+.fill-blank__score {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.fill-blank__question {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.fill-blank__sentence {
+    font-size: var(--font-size-lg);
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.fill-blank__input-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-lg) 0;
+}
+
+.fill-blank__input {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+}
+
+.fill-blank__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.fill-blank__feedback {
+    margin-top: var(--spacing-md);
+    text-align: center;
+}
+
+.fill-blank__complete {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.fill-blank__final-score {
+    font-size: var(--font-size-xl);
+    margin: var(--spacing-md) 0;
+}
+
+/* ========== FEEDBACK ========== */
+.feedback {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+.feedback--success {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.feedback--error {
+    background-color: var(--color-error);
+    color: white;
+}

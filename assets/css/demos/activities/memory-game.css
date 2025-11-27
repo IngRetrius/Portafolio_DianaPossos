@@ -1,0 +1,144 @@
+/**
+ * MEMORY-GAME.CSS
+ * Estilos para la actividad Memory Game
+ */
+
+/* ========== MEMORY GAME ========== */
+.memory-game__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.memory-game__info {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.memory-game__stat {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.memory-game__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.memory-game__grid[data-pairs="6"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.memory-game__grid[data-pairs="8"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.memory-card {
+    aspect-ratio: 3/4;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+}
+
+.memory-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.memory-card.is-flipped .memory-card__inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card__front,
+.memory-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+}
+
+.memory-card__front {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.memory-card__front::after {
+    content: '?';
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+}
+
+.memory-card__back {
+    background: white;
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    transform: rotateY(180deg);
+}
+
+.memory-card__back img {
+    max-width: 100%;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+}
+
+.memory-card__label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+.memory-card.is-matched .memory-card__inner {
+    transform: rotateY(180deg);
+    opacity: 0.6;
+}
+
+.memory-card:hover:not(.is-matched) {
+    transform: translateY(-4px);
+}
+
+.memory-card:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .memory-game__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    .memory-game__grid[data-pairs="6"],
+    .memory-game__grid[data-pairs="8"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .memory-game__grid {
+        gap: var(--spacing-xs);
+    }
+
+    .memory-card__label {
+        font-size: var(--font-size-xs);
+    }
+}

@@ -1,0 +1,129 @@
+/**
+ * DEMOS-BASE.CSS
+ * Estilos base para la página de demos
+ * Incluye: hero, progress bar, footer
+ */
+
+/* ========== HERO DEMOS ========== */
+.hero-demos {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: calc(90px + var(--spacing-2xl)) 0 var(--spacing-2xl) 0;
+    margin-top: 0;
+}
+
+.hero-demos__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-demos__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--spacing-md) 0;
+    line-height: 1.2;
+}
+
+.hero-demos__subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.95;
+    margin: 0 0 var(--spacing-xl) 0;
+    line-height: 1.5;
+}
+
+/* ========== PROGRESS BAR ========== */
+.demo-progress {
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.demo-progress__text {
+    display: block;
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.demo-progress__bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.demo-progress__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-success) 0%, #4ade80 100%);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+/* ========== MAIN CONTAINER ========== */
+.demo-main {
+    min-height: calc(100vh - 200px);
+    padding: var(--spacing-xl) 0;
+}
+
+.demo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ========== FOOTER ========== */
+.demo-footer {
+    background: var(--color-background-alt);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+}
+
+.demo-footer__text {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* ========== BACK LINK STYLE ========== */
+.nav__link--back {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-base);
+}
+
+.nav__link--back:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .hero-demos {
+        padding: calc(70px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+    }
+
+    .hero-demos__title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero-demos__subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    .demo-progress {
+        padding: var(--spacing-md);
+    }
+
+    .demo-progress__text {
+        font-size: var(--font-size-sm);
+    }
+}

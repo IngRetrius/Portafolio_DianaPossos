@@ -1,0 +1,117 @@
+/**
+ * SOUND-MATCH.CSS
+ * Estilos para la actividad Sound Match
+ */
+
+/* ========== SOUND MATCH ========== */
+.sound-match__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.sound-match__progress {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.sound-match__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+}
+
+.sound-match__sounds h4,
+.sound-match__images h4 {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+}
+
+.sound-match__sounds {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.sound-match__sound-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.sound-match__sound-btn:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    transform: translateX(4px);
+}
+
+.sound-match__sound-btn.is-playing {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+.sound-match__sound-btn.is-matched {
+    background-color: var(--color-success);
+    color: white;
+    border-color: var(--color-success);
+    opacity: 0.7;
+}
+
+.sound-match__icon {
+    font-size: var(--font-size-xl);
+}
+
+.sound-match__images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.sound-match__image-card {
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.sound-match__image-card:hover:not(.is-matched) {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+}
+
+.sound-match__image-card.is-matched {
+    border-color: var(--color-success);
+    background-color: rgba(76, 175, 80, 0.1);
+    opacity: 0.7;
+}
+
+.sound-match__image-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+}
+
+.sound-match__label {
+    display: block;
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .sound-match__container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
