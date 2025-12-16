@@ -395,13 +395,22 @@ function initModal() {
         `,
         
         video: `
-            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Video Tutorial</h2>
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Video Tutorial</h2>
             <div style="text-align: center;">
-                <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
-                    Guía práctica sobre el uso de las actividades digitales implementadas en Wordwall
+                <p style="color: var(--color-text-secondary); margin-bottom: 1rem; max-width: 720px; margin-left: auto; margin-right: auto;">
+                    Guía práctica sobre el uso de las actividades digitales implementadas en Wordwall.
                 </p>
-                <div style="background: var(--color-gray-100); padding: 3rem; border-radius: 12px;">
-                    <p>🎥 Video próximamente disponible</p>
+                <div style="width: 100%; max-width: 900px; margin: 1rem auto 0;">
+                    <div style="width: 100%; aspect-ratio: 16/9; background: var(--color-gray-100); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-xl);">
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/JwwKHOWdF30?rel=0&cc_load_policy=1&cc_lang_pref=es"
+                            title="Video Tutorial - Diana Possos"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            style="width: 100%; height: 100%; border: 0; display: block;">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         `,
@@ -856,6 +865,10 @@ function initModal() {
 
             // Limpiar cache de imágenes para liberar memoria
             imagePreloadCache.clear();
+
+            // Detener reproducción de medios (videos/iframes) limpiando el contenido del modal
+            const modalBody = modal.querySelector('.modal__body');
+            if (modalBody) modalBody.innerHTML = '';
 
             // Reset animación
             isAnimating = false;
