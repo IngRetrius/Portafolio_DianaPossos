@@ -401,15 +401,13 @@ function initModal() {
                     Guía práctica sobre el uso de las actividades digitales implementadas en Wordwall.
                 </p>
                 <div style="width: 100%; max-width: 900px; margin: 1rem auto 0;">
-                    <div style="width: 100%; aspect-ratio: 16/9; background: var(--color-gray-100); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-xl);">
-                        <iframe
-                            src="https://www.youtube-nocookie.com/embed/JwwKHOWdF30?rel=0&cc_load_policy=1&cc_lang_pref=es"
-                            title="Video Tutorial - Diana Possos"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            style="width: 100%; height: 100%; border: 0; display: block;">
-                        </iframe>
+                    <div style="display:flex; gap: .5rem; justify-content: center; margin-bottom: .75rem;">
+                        <button id="videoBtnYT" class="btn btn--primary" style="padding: .5rem 1rem;">Ver en YouTube</button>
+                        <button id="videoBtnPDF" class="btn btn--secondary" style="padding: .5rem 1rem;">Ver PDF</button>
+                        <a id="videoDownloadLink" href="documents/Video_tutorial.pdf" download class="btn btn--primary" style="padding: .5rem 1rem; margin-left: .25rem;">Descargar PDF</a>
+                    </div>
+                    <div id="videoContentContainer" style="width: 100%; aspect-ratio: 16/9; background: var(--color-gray-100); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-xl);">
+                        <!-- Contenido dinámico: iframe YouTube o PDF -->
                     </div>
                 </div>
             </div>
@@ -800,6 +798,66 @@ function initModal() {
     }
 
     /**
+     * Inicializa la lógica del modal de video para alternar entre YouTube y PDF
+     * @param {HTMLElement} modalBody - el contenedor del cuerpo del modal
+     */
+    function initVideoModal(modalBody) {
+        if (!modalBody) return;
+
+        const ytBtn = modalBody.querySelector('#videoBtnYT');
+        const pdfBtn = modalBody.querySelector('#videoBtnPDF');
+        const container = modalBody.querySelector('#videoContentContainer');
+        const downloadLink = modalBody.querySelector('#videoDownloadLink');
+
+        const ytEmbedHtml = `
+            <div style="width:100%; height:100%;">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/JwwKHOWdF30?rel=0&cc_load_policy=1&cc_lang_pref=es"
+                    title="Video Tutorial - Diana Possos"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    style="width:100%; height:100%; border:0; display:block;">
+                </iframe>
+            </div>
+        `;
+
+        const pdfEmbedHtml = `
+            <div style="width:100%; height:100%;">
+                <iframe
+                    src="documents/Video_tutorial.pdf"
+                    title="Video Tutorial (PDF)"
+                    frameborder="0"
+                    style="width:100%; height:100%; border:0; display:block;">
+                </iframe>
+            </div>
+        `;
+
+        function showYT() {
+            if (!container) return;
+            container.innerHTML = ytEmbedHtml;
+            ytBtn && ytBtn.classList.add('active');
+            pdfBtn && pdfBtn.classList.remove('active');
+        }
+
+        function showPDF() {
+            if (!container) return;
+            container.innerHTML = pdfEmbedHtml;
+            pdfBtn && pdfBtn.classList.add('active');
+            ytBtn && ytBtn.classList.remove('active');
+            // Asegurar que el enlace de descarga apunte correctamente
+            if (downloadLink) downloadLink.href = 'documents/Video_tutorial.pdf';
+        }
+
+        // Añadir listeners
+        ytBtn && ytBtn.addEventListener('click', showYT);
+        pdfBtn && pdfBtn.addEventListener('click', showPDF);
+
+        // Mostrar YouTube por defecto
+        showYT();
+    }
+
+    /**
      * Inicializa event listeners para gestos táctiles
      */
     function initTouchGestures() {
@@ -848,6 +906,10 @@ function initModal() {
         }
 
         modalBody.innerHTML = content;
+        // Inicializar comportamiento específico para el modal de video (alternar YouTube/PDF)
+        if (contentId === 'video') {
+            initVideoModal(modalBody);
+        }
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
