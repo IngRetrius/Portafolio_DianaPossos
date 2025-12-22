@@ -379,11 +379,22 @@ function initModal() {
         `,
         
         propuesta: `
-            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Propuesta Metodológica</h2>
-            <p style="color: var(--color-text-secondary); line-height: 1.8;">
-                Marco metodológico basado en Investigación Acción Participativa (IAP)
-                con enfoque mixto y estrategia de aprendizaje basado en juegos.
-            </p>
+            <h2 style="color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">Propuesta Metodológica</h2>
+            <div style="text-align: center;">
+                <p style="color: var(--color-text-secondary); line-height: 1.8; max-width: 720px; margin: 0 auto 1rem;">
+                    Marco metodológico basado en Investigación Acción Participativa (IAP)
+                    con enfoque mixto y estrategia de aprendizaje basado en juegos.
+                </p>
+                <div style="display:flex; gap:.5rem; justify-content:center; margin-bottom:.75rem;">
+                    <a href="documents/Metodologia%20video.mp4" download class="btn btn--primary" style="padding:.5rem 1rem;">Descargar Video</a>
+                </div>
+                <div style="width:100%; max-width:900px; margin:0 auto; aspect-ratio:16/9; background:var(--color-gray-100); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-xl);">
+                    <video controls style="width:100%; height:100%; display:block; background:black;">
+                        <source src="documents/Metodologia%20video.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+            </div>
         `,
         
         diseno: `
